@@ -2,12 +2,6 @@ import mongoose from "mongoose";
 
 const albumSchema = mongoose.Schema(
   {
-    artistId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-
     title: {
       type: String,
       required: true,
@@ -25,6 +19,11 @@ const albumSchema = mongoose.Schema(
     },
 
     tracks: [{ type: String }],
+
+    imageUrl: {
+        type: String,
+        required: false
+    }
   },
   {
     timestamps: true,

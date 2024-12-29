@@ -33,6 +33,11 @@ const userSchema = mongoose.Schema(
             type: String  //Optional for artist
         }, 
 
+        albums: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Album"
+        }],
+
         bio: { 
             type: String  // Optional for artist
         },   
