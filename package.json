@@ -19,6 +19,7 @@
     "mqtt": "^5.10.3",
     "express-session": "^1.18.1",
     "connect-mongo": "^5.1.0",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "bcrypt": "^5.1.1"
   }
 }
