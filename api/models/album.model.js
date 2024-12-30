@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const albumSchema = mongoose.Schema(
   {
+    artist: {
+      type: String,
+      required: true
+    },
+
     title: {
       type: String,
       required: true,

@@ -2,25 +2,29 @@ import mongoose from "mongoose";
 
 
 const studioSessionSchema = mongoose.Schema({
-  artistId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  
   date: {
     type: Date,
     required: true,
+  },
+
+  artist: {
+    type: String,
+    required: true
   },
 
   details: {
     type: String,
   },
 
+  duration: {
+    type: Number,
+    required: true,
+  },
+  
   status: {
     type: String,
     enum: ["scheduled", "completed", "cancelled"],
-    default: "Scheduled"
+    default: "scheduled"
   }
 });
 

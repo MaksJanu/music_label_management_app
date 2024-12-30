@@ -18,7 +18,8 @@ const userSchema = mongoose.Schema(
         role: { 
             type: String,
             enum: ['user', 'artist'],
-            required: true },
+            required: true 
+        },
 
         permissions: { 
             type: [String],
@@ -26,20 +27,30 @@ const userSchema = mongoose.Schema(
         },
 
         name: { 
-            type: String  //Optional for artist
+            type: String,  //Optional for artist
+            required: function() { return this.role === "artist" }
         },
 
         genre: {
-            type: String  //Optional for artist
+            type: String,  //Optional for artist
+            required: function() { return this.role === "artist" }
         }, 
 
         albums: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Album"
+            type: mongoose.Schema.Types.ObjectId,  //Optional for artist added further
+            ref: "Album",
+            required: function() { return this.role === "artist" }
+        }],
+
+        studioSessions: [{
+            type: mongoose.Schema.Types.ObjectId,  //Optional for artist added further
+            ref: "StudioSession",
+            required: function() { return this.role === "artist" }
         }],
 
         bio: { 
-            type: String  // Optional for artist
+            type: String,  // Optional for artist
+            required: function() { return this.role === "artist" }
         },   
 
         createdAt: {
@@ -83,6 +94,14 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
+// Middleware do hashowania hasła podczas aktualizacji
+userSchema.pre('findOneAndUpdate', async function (next) {
+    const update = this.getUpdate();
+    if (update.password) {
+        update.password = await bcrypt.hash(update.password, 10);
+    }
+    next();
+});
 
 // Dodanie metody sprawdzania hasła
 userSchema.methods.isValidPassword = async function (password) {
