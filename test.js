@@ -8,7 +8,8 @@ import bodyParser from "body-parser";
 import User from "./api/models/user.model.js";
 import StudioSession from "./api/models/studio-session.model.js";
 import Album from "./api/models/album.model.js";
-
+import passport from "passport";
+import { Strategy } from 'passport-local';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -30,14 +31,52 @@ app.use(session({
 
 
 
+app.post('/auth/register', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User with this email already exists' });
+    }
+
+    const newUser = await User.create(req.body);
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 
 
+app.post('/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    const isPasswordValid = await user.isValidPassword(password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    req.session.userId = user._id;
+    res.status(200).json({ message: 'Logged in successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 
-
-
-
+app.post('/auth/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to log out' });
+    }
+    res.status(200).json({ message: 'Logged out successfully' });
+  });
+});
 
 
 
@@ -203,7 +242,8 @@ app.post("/api/studio-session/:artistName", async (req, res) => {
 
 
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+
+mongoose.connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Connected!");
     app.listen(PORT, () => {
