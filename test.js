@@ -1,4 +1,6 @@
 import express from "express";
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
@@ -16,6 +18,45 @@ const PORT = process.env.PORT;
 //Middleware
 app.use(express.json());
 app.use(bodyParser.urlencoded( { extended: true }))
+
+// Konfiguracja sesji logowania podpisana kluczem
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 dzień
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -162,9 +203,7 @@ app.post("/api/studio-session/:artistName", async (req, res) => {
 
 
 
-mongoose.connect(
-    process.env.MONGODB_URL
-  )
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected!");
     app.listen(PORT, () => {
