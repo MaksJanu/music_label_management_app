@@ -113,6 +113,21 @@ app.post('/auth/logout', (req, res) => {
 });
 
 
+app.put("/auth/change-credentials/:mail", ensureAuthenticated, async (req, res) => {
+  try {
+    const { mail } = req.params
+    const userToUpdate = await User.findOneAndUpdate({ email: mail }, req.body, { new: true });
+    if (!userToUpdate) {
+      return res.status(404).json({ message: "User with given mail doesn't exist!" });
+    }
+    res.status(200).json(userToUpdate);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+})
+
+
+
 
 
 app.get("/api/user", async (req, res) => {
@@ -144,18 +159,9 @@ app.get("/api/user/:mail", ensureAuthenticated, async (req, res) => {
 })
 
 
-app.put("/api/user/:mail", ensureAuthenticated, async (req, res) => {
-  try {
-    const { mail } = req.params
-    const userToUpdate = await User.findOneAndUpdate({ email: mail }, req.body, { new: true });
-    if (!userToUpdate) {
-      return res.status(404).json({ message: "User with given mail doesn't exist!" });
-    }
-    res.status(200).json(userToUpdate);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-})
+
+
+
 
 
 app.get("/api/album", async (req, res) => {
@@ -171,8 +177,7 @@ app.get("/api/album", async (req, res) => {
 app.post("/api/album/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
     try {
         const { artistName } = req.params;
-        const { artist, title, genre, releaseDate, tracks, imageUrl } = req.body;
-
+        const { title } = req.body;
 
         const searchedArtist = await User.findOne({ name: artistName, role: 'artist' });
         if (!searchedArtist) {
@@ -184,8 +189,7 @@ app.post("/api/album/:artistName", ensureAuthenticated, ensureArtistRole, async 
           return res.status(400).json({ message: "Album with this title already exists for this artist" });
         }
 
-        const newAlbum = new Album({ artist, title, genre, releaseDate, tracks, imageUrl });
-        await newAlbum.save();
+        const newAlbum = await Album.create(req.body);
 
         searchedArtist.albums.push(newAlbum._id);
         await searchedArtist.save();
@@ -197,18 +201,58 @@ app.post("/api/album/:artistName", ensureAuthenticated, ensureArtistRole, async 
 });
 
 
+app.delete("/api/album/:albumName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+  try {
+    const { albumName } = req.params
+    const deleteAlbum = await Album.findOneAndDelete({title: albumName})
+    if (!deleteAlbum) {
+      res.status(404).json({ message: "Album with given name doesn't exist!" })
+    }
+    res.status(200).json({ message: "Album was deleted successfully!" })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
+
+
+
+
+
+app.get("/api/studio-session", async (req, res) => {
+  try {
+    const searchedStudioSessions = await StudioSession.find({})
+    res.status(200).json(searchedStudioSessions)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
+app.get("/api/studio-session/:artistName", async (req, res) => {
+  try {
+    const { artistName } = req.params
+    const searchedStudioSessions = await StudioSession.find({artist: artistName})
+    res.status(200).json(searchedStudioSessions)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
 app.post("/api/studio-session/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
   try {
     const { artistName } = req.params
-    const { date, artist, details, status, duration } = req.body
-  
+    const { details } = req.body
     const searchedArtist = await User.findOne({name: artistName, role: "artist"})
     if (!searchedArtist) {
       return res.status(404).json({ message: "Artist not found" });
     }
+
+    const existingSession = await StudioSession.findOne({details})
+    if (existingSession) {
+      res.status(404).json({ message: "Session with the same details already exists!" })
+    }
   
-    const newSession = new StudioSession({ date,artist, details, status, duration });
-    await newSession.save();
+    const newSession = await StudioSession.create(req.body);
   
     searchedArtist.studioSessions.push(newSession._id);
     await searchedArtist.save();
@@ -219,7 +263,18 @@ app.post("/api/studio-session/:artistName", ensureAuthenticated, ensureArtistRol
   }
 })
 
-
+app.delete("/api/studio-session/:id", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+  try {
+    const { id } = req.params
+    const deletedStudioSession = await StudioSession.findByIdAndDelete(id)
+    if (!deletedStudioSession) {
+      res.status(404).json({ message: "Studio session with given id doesn't exist!" })
+    }
+    res.status(200).json({ message: "Studio session was sucessfully deleted!" })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
 
 
 
