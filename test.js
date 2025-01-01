@@ -5,11 +5,18 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 import bodyParser from "body-parser";
+
+//Importing models
 import User from "./api/models/user.model.js";
 import StudioSession from "./api/models/studio-session.model.js";
 import Album from "./api/models/album.model.js";
+
 import passport from "passport";
 import { Strategy } from 'passport-local';
+
+//Importing middleware for artist's endpoints
+import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js";
+
 
 
 const app = express();
@@ -78,7 +85,12 @@ app.post('/auth/register', async (req, res) => {
     }
 
     const newUser = await User.create(req.body);
-    res.status(201).json(newUser);
+    req.login(newUser, (err) => {
+      if (err) {
+        return res.status(500).json({ message: err.message });
+      }
+      return res.status(201).json(newUser);
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -86,24 +98,8 @@ app.post('/auth/register', async (req, res) => {
 
 
 
-app.post('/auth/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid email or password' });
-    }
-
-    const isPasswordValid = await user.isValidPassword(password);
-    if (!isPasswordValid) {
-      return res.status(400).json({ message: 'Invalid email or password' });
-    }
-
-    req.session.userId = user._id;
-    res.status(200).json({ message: 'Logged in successfully' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+app.post('/auth/login', passport.authenticate('local'), (req, res) => {
+  res.status(200).json({ message: 'Logged in successfully' });
 });
 
 
@@ -115,24 +111,6 @@ app.post('/auth/logout', (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -149,7 +127,8 @@ app.get("/api/user", async (req, res) => {
     }
 });
 
-app.get("/api/user/:mail", async (req, res) => {
+
+app.get("/api/user/:mail", ensureAuthenticated, async (req, res) => {
   try {
     const { mail } = req.params
     const user = await User.findOne({ email: mail })
@@ -165,7 +144,7 @@ app.get("/api/user/:mail", async (req, res) => {
 })
 
 
-app.put("/api/user/:mail", async (req, res) => {
+app.put("/api/user/:mail", ensureAuthenticated, async (req, res) => {
   try {
     const { mail } = req.params
     const userToUpdate = await User.findOneAndUpdate({ email: mail }, req.body, { new: true });
@@ -179,10 +158,6 @@ app.put("/api/user/:mail", async (req, res) => {
 })
 
 
-
-
-
-
 app.get("/api/album", async (req, res) => {
     try {
       const albums = await Album.find({});
@@ -193,7 +168,7 @@ app.get("/api/album", async (req, res) => {
 });
 
 
-app.post("/api/album/:artistName", async (req, res) => {
+app.post("/api/album/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
     try {
         const { artistName } = req.params;
         const { artist, title, genre, releaseDate, tracks, imageUrl } = req.body;
@@ -222,19 +197,7 @@ app.post("/api/album/:artistName", async (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-app.post("/api/studio-session/:artistName", async (req, res) => {
+app.post("/api/studio-session/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
   try {
     const { artistName } = req.params
     const { date, artist, details, status, duration } = req.body
@@ -255,13 +218,6 @@ app.post("/api/studio-session/:artistName", async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 })
-
-
-
-
-
-
-
 
 
 
