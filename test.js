@@ -11,12 +11,13 @@ import Album from "./api/models/album.model.js";
 import passport from "passport";
 import { Strategy } from 'passport-local';
 
+
 const app = express();
 const PORT = process.env.PORT;
 
 
 
-//Middleware
+//Middleware do parsowania danych
 app.use(express.json());
 app.use(bodyParser.urlencoded( { extended: true }))
 
@@ -29,6 +30,43 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 dzień
 }));
 
+// Inicjalizacja biblioteki do uwierzytelniania uzytkownikow
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Konfiguracja Passport
+passport.use(new Strategy({
+  usernameField: 'email',
+  passwordField: 'password'
+}, async (email, password, done) => {
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return done(null, false, { message: 'Invalid email or password' });
+    }
+    const isPasswordValid = await user.isValidPassword(password);
+    if (!isPasswordValid) {
+      return done(null, false, { message: 'Invalid email or password' });
+    }
+    return done(null, user);
+  } catch (error) {
+    return done(error);
+  }
+}));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});
 
 
 app.post('/auth/register', async (req, res) => {
@@ -126,20 +164,6 @@ app.get("/api/user/:mail", async (req, res) => {
   }
 })
 
-app.post("/api/user", async (req, res) => {
-  try {
-    const { email } = req.body
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User with this email already exists" });
-    }
-
-    const newUser = await User.create(req.body);
-    res.status(200).json(newUser);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
 app.put("/api/user/:mail", async (req, res) => {
   try {
