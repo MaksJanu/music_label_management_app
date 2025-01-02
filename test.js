@@ -20,7 +20,7 @@ import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js"
 //Importing routes
 import authRoutes from "./api/routes/auth.route.js";
 import userRoutes from "./api/routes/user.route.js";
-import studioSessionRouts from "./api/routes/studio-session.route.js";
+import studioSessionRoutes from "./api/routes/studio-session.route.js";
 import albumRoutes from "./api/routes/album.route.js";
 
 
@@ -141,6 +141,7 @@ app.use("/auth", authRoutes)
 
 //User routes
 app.use("/api/user", userRoutes)
+
 // app.get("/api/user", async (req, res) => {
 //     try {
 //       const users = await User.find({})
@@ -243,64 +244,65 @@ app.use("/api/album", albumRoutes)
 
 
 
+//Studio Sessions routes
+app.use("/api/studio-session", studioSessionRoutes)
 
+// app.get("/api/studio-session", async (req, res) => {
+//   try {
+//     const searchedStudioSessions = await StudioSession.find({})
+//     res.status(200).json(searchedStudioSessions)
+//   } catch (error) {
+//     res.status(500).json({ message: error.message })
+//   }
+// })
 
-app.get("/api/studio-session", async (req, res) => {
-  try {
-    const searchedStudioSessions = await StudioSession.find({})
-    res.status(200).json(searchedStudioSessions)
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
+// app.get("/api/studio-session/:artistName", async (req, res) => {
+//   try {
+//     const { artistName } = req.params
+//     const searchedStudioSessions = await StudioSession.find({artist: artistName})
+//     res.status(200).json(searchedStudioSessions)
+//   } catch (error) {
+//     res.status(500).json({ message: error.message })
+//   }
+// })
 
-app.get("/api/studio-session/:artistName", async (req, res) => {
-  try {
-    const { artistName } = req.params
-    const searchedStudioSessions = await StudioSession.find({artist: artistName})
-    res.status(200).json(searchedStudioSessions)
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
+// app.post("/api/studio-session/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+//   try {
+//     const { artistName } = req.params
+//     const { details } = req.body
+//     const searchedArtist = await User.findOne({name: artistName, role: "artist"})
+//     if (!searchedArtist) {
+//       return res.status(404).json({ message: "Artist not found" });
+//     }
 
-app.post("/api/studio-session/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
-  try {
-    const { artistName } = req.params
-    const { details } = req.body
-    const searchedArtist = await User.findOne({name: artistName, role: "artist"})
-    if (!searchedArtist) {
-      return res.status(404).json({ message: "Artist not found" });
-    }
-
-    const existingSession = await StudioSession.findOne({details})
-    if (existingSession) {
-      res.status(404).json({ message: "Session with the same details already exists!" })
-    }
+//     const existingSession = await StudioSession.findOne({details})
+//     if (existingSession) {
+//       res.status(404).json({ message: "Session with the same details already exists!" })
+//     }
   
-    const newSession = await StudioSession.create(req.body);
+//     const newSession = await StudioSession.create(req.body);
   
-    searchedArtist.studioSessions.push(newSession._id);
-    await searchedArtist.save();
+//     searchedArtist.studioSessions.push(newSession._id);
+//     await searchedArtist.save();
   
-    res.status(201).json(newSession);
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
+//     res.status(201).json(newSession);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message })
+//   }
+// })
 
-app.delete("/api/studio-session/:id", ensureAuthenticated, ensureArtistRole, async (req, res) => {
-  try {
-    const { id } = req.params
-    const deletedStudioSession = await StudioSession.findByIdAndDelete(id)
-    if (!deletedStudioSession) {
-      res.status(404).json({ message: "Studio session with given id doesn't exist!" })
-    }
-    res.status(200).json({ message: "Studio session was sucessfully deleted!" })
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
+// app.delete("/api/studio-session/:id", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+//   try {
+//     const { id } = req.params
+//     const deletedStudioSession = await StudioSession.findByIdAndDelete(id)
+//     if (!deletedStudioSession) {
+//       res.status(404).json({ message: "Studio session with given id doesn't exist!" })
+//     }
+//     res.status(200).json({ message: "Studio session was sucessfully deleted!" })
+//   } catch (error) {
+//     res.status(500).json({ message: error.message })
+//   }
+// })
 
 
 
