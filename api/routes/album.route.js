@@ -16,4 +16,4 @@ router.post("/:artistName", ensureAuthenticated, ensureArtistRole, postAlbum)
 router.delete("/:albumName", ensureAuthenticated, ensureArtistRole, deleteAlbum)
 
 
-export { router };
+export default router;

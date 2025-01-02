@@ -35,7 +35,7 @@ const postStudioSession = async (req, res) => {
   
       const existingSession = await StudioSession.findOne({details})
       if (existingSession) {
-        res.status(404).json({ message: "Session with the same details already exists!" })
+        return res.status(404).json({ message: "Session with the same details already exists!" })
       }
     
       const newSession = await StudioSession.create(req.body);

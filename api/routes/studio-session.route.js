@@ -16,4 +16,4 @@ router.post("/:artistName", ensureAuthenticated, ensureArtistRole, postStudioSes
 router.delete("/:id", ensureAuthenticated, ensureArtistRole, deleteStudioSession)
 
 
-export { router };
+export default router;

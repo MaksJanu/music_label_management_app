@@ -15,4 +15,4 @@ router.post("/logout", ensureAuthenticated, logout)
 router.put("/change-credentials/:mail", ensureAuthenticated, changeCredentials)
 
 
-export { router }
+export default router;

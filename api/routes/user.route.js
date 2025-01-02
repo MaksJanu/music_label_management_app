@@ -8,3 +8,6 @@ const router = express.Router()
 //Get methods
 router.get("/", ensureAuthenticated, getAllUsers)
 router.get("/:mail", ensureAuthenticated, getSpecificUser)
+
+
+export default router;
