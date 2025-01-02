@@ -1,8 +1,7 @@
 import User from "../models/user.model.js";
 
 
-
-const allUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
     try {
       const users = await User.find({})
       .populate("albums")
@@ -15,7 +14,7 @@ const allUsers = async (req, res) => {
 }
 
 
-const specificUser = async (req, res) => {
+const getSpecificUser = async (req, res) => {
     try {
       const { mail } = req.params
       const user = await User.findOne({ email: mail })
@@ -31,7 +30,7 @@ const specificUser = async (req, res) => {
 }
 
 
-export { allUsers, specificUser };
+export { getAllUsers, getSpecificUser };
 
 
 

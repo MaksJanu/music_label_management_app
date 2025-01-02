@@ -173,57 +173,72 @@ app.use("/api/user", userRoutes)
 
 
 
+//Album routes
+app.use("/api/album", albumRoutes)
+
+// app.get("/api/album", async (req, res) => {
+//     try {
+//       const albums = await Album.find({});
+//       res.status(200).json(albums);
+//     } catch (error) {
+//       res.status(500).json({ message: error.message });
+//     }
+// });
 
 
-app.get("/api/album", async (req, res) => {
-    try {
-      const albums = await Album.find({});
-      res.status(200).json(albums);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-});
+// app.get("/api/album/:artistName", async (req, res) => {
+//   try {
+//     const { artistName } = req.params
+//     const albums = await Album.find({ artist: artistName });
+//     if (albums.length === 0) {
+//       return res.status(404).json({ message: "No albums found for this artist" });
+//     }
+//     res.status(200).json(albums);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 
-app.post("/api/album/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
-    try {
-        const { artistName } = req.params;
-        const { title } = req.body;
+// app.post("/api/album/:artistName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+//     try {
+//         const { artistName } = req.params;
+//         const { title } = req.body;
 
-        const searchedArtist = await User.findOne({ name: artistName, role: 'artist' });
-        if (!searchedArtist) {
-            return res.status(404).json({ message: "Artist not found" });
-        }
+//         const searchedArtist = await User.findOne({ name: artistName, role: 'artist' });
+//         if (!searchedArtist) {
+//             return res.status(404).json({ message: "Artist not found" });
+//         }
 
-        const existingAlbum = await Album.findOne({ title, artist: searchedArtist.name });
-        if (existingAlbum) {
-          return res.status(400).json({ message: "Album with this title already exists for this artist" });
-        }
+//         const existingAlbum = await Album.findOne({ title, artist: searchedArtist.name });
+//         if (existingAlbum) {
+//           return res.status(400).json({ message: "Album with this title already exists for this artist" });
+//         }
 
-        const newAlbum = await Album.create(req.body);
+//         const newAlbum = await Album.create(req.body);
 
-        searchedArtist.albums.push(newAlbum._id);
-        await searchedArtist.save();
+//         searchedArtist.albums.push(newAlbum._id);
+//         await searchedArtist.save();
 
-        res.status(201).json(newAlbum);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
+//         res.status(201).json(newAlbum);
+//     } catch (error) {
+//         res.status(500).json({ message: error.message });
+//     }
+// });
 
 
-app.delete("/api/album/:albumName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
-  try {
-    const { albumName } = req.params
-    const deleteAlbum = await Album.findOneAndDelete({title: albumName})
-    if (!deleteAlbum) {
-      res.status(404).json({ message: "Album with given name doesn't exist!" })
-    }
-    res.status(200).json({ message: "Album was deleted successfully!" })
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
+// app.delete("/api/album/:albumName", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+//   try {
+//     const { albumName } = req.params
+//     const deleteAlbum = await Album.findOneAndDelete({title: albumName})
+//     if (!deleteAlbum) {
+//       res.status(404).json({ message: "Album with given name doesn't exist!" })
+//     }
+//     res.status(200).json({ message: "Album was deleted successfully!" })
+//   } catch (error) {
+//     res.status(500).json({ message: error.message })
+//   }
+// })
 
 
 
