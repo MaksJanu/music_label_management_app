@@ -17,6 +17,12 @@ import { Strategy } from 'passport-local';
 //Importing middleware for artist's endpoints
 import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js";
 
+//Importing routes
+import authRoutes from "./api/routes/auth.route.js";
+import userRoutes from "./api/routes/user.route.js";
+import studioSessionRouts from "./api/routes/studio-session.route.js";
+import albumRoutes from "./api/routes/album.route.js";
+
 
 
 const app = express();
@@ -76,6 +82,11 @@ passport.deserializeUser(async (id, done) => {
 });
 
 
+
+
+//Auth routes
+app.use("/auth", authRoutes)
+
 // app.post('/auth/register', async (req, res) => {
 //   try {
 //     const { email } = req.body;
@@ -128,35 +139,35 @@ passport.deserializeUser(async (id, done) => {
 
 
 
-
-
-app.get("/api/user", async (req, res) => {
-    try {
-      const users = await User.find({})
-      .populate("albums")
-      .populate("studioSessions");
+//User routes
+app.use("/api/user", userRoutes)
+// app.get("/api/user", async (req, res) => {
+//     try {
+//       const users = await User.find({})
+//       .populate("albums")
+//       .populate("studioSessions");
       
-      res.status(200).json(users);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-});
+//       res.status(200).json(users);
+//     } catch (error) {
+//       res.status(500).json({ message: error.message });
+//     }
+// });
 
 
-app.get("/api/user/:mail", ensureAuthenticated, async (req, res) => {
-  try {
-    const { mail } = req.params
-    const user = await User.findOne({ email: mail })
-    .populate("albums")
-    .populate("studioSessions");
-    if (!user) {
-      res.status(400).json({ message: "User with given mail doesn't exist!"  })
-    }
-    res.status(200).json(user)
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
+// app.get("/api/user/:mail", ensureAuthenticated, async (req, res) => {
+//   try {
+//     const { mail } = req.params
+//     const user = await User.findOne({ email: mail })
+//     .populate("albums")
+//     .populate("studioSessions");
+//     if (!user) {
+//       res.status(400).json({ message: "User with given mail doesn't exist!"  })
+//     }
+//     res.status(200).json(user)
+//   } catch (error) {
+//     res.status(500).json({ message: error.message })
+//   }
+// })
 
 
 
