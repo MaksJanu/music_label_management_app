@@ -28,11 +28,13 @@ app.get("/dashboard", (req, res) => {
 
 
 app.get("/profile", (req, res) => {
-    res.render("/pages/profile.ejs")
+    res.render("pages/profile.ejs")
 })
 
 
-
+app.get("/main", (req, res) => {
+    res.render("pages/main.ejs")
+})
 
 
 
