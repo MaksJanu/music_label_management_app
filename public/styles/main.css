@@ -6,13 +6,16 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #f4f4f4;
   color: #333;
-  min-height: 100vh;
   height: 100%;
-  /* start.ejs styling start */
-  /* footer.ejs styling start */
-  /* footer.ejs styling ends */
+  display: flex;
+  flex-direction: column;
 }
-body .container {
+
+.start-page {
+  /* start.ejs styling start */
+  /* start.ejs styling ends */
+}
+.start-page .main-container {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -21,27 +24,19 @@ body .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  /* start.ejs styling ends */
-  /* auth.ejs styling start */
-  /* auth.ejs styling end */
-  /* main.ejs styling start */
-  /* main.ejs styling end */
+  min-height: 90vh;
 }
-body .container .logo {
-  width: 200px;
-  height: 150px;
-}
-body .container .logo img {
+.start-page .main-container .logo img {
   width: 500px;
   height: auto;
 }
-body .container .buttons {
+.start-page .main-container .buttons {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 0px;
 }
-body .container .buttons .login-button {
+.start-page .main-container .buttons .login-button {
   cursor: pointer;
   padding: 5px 50px 5px 50px;
   font-size: 20px;
@@ -50,11 +45,13 @@ body .container .buttons .login-button {
   border: 2px solid black;
   border-radius: 10px;
   transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-body .container .buttons .login-button:hover {
+.start-page .main-container .buttons .login-button:hover {
   background-color: #f0f0f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
-body .container .buttons .register-button {
+.start-page .main-container .buttons .register-button {
   cursor: pointer;
   padding: 5px 50px 5px 50px;
   font-size: 20px;
@@ -64,23 +61,40 @@ body .container .buttons .register-button {
   border: 1px solid black;
   border-radius: 10px;
   transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-body .container .buttons .register-button:hover {
-  background-color: #7d7c7c;
+.start-page .main-container .buttons .register-button:hover {
+  background-color: #474747;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
-body .container .form-container #loginForm, body .container .form-container #registerForm {
+
+.auth-page {
+  /* auth.ejs styling start */
+  /* auth.ejs styling end */
+}
+.auth-page .main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.auth-page .main-container .logo img {
+  width: 500px;
+}
+.auth-page .form-container #loginForm, .auth-page .form-container #registerForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 12px;
 }
-body .container .form-container #loginForm input, body .container .form-container #registerForm input {
+.auth-page .form-container #loginForm input, .auth-page .form-container #registerForm input {
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
 }
-body .container .form-container #loginForm .full-width, body .container .form-container #registerForm .full-width {
+.auth-page .form-container #loginForm .full-width, .auth-page .form-container #registerForm .full-width {
   cursor: pointer;
   padding: 5px 50px 5px 50px;
   font-size: 20px;
@@ -90,11 +104,13 @@ body .container .form-container #loginForm .full-width, body .container .form-co
   border: 1px solid black;
   border-radius: 10px;
   transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-body .container .form-container #loginForm .full-width:hover, body .container .form-container #registerForm .full-width:hover {
-  background-color: #7d7c7c;
+.auth-page .form-container #loginForm .full-width:hover, .auth-page .form-container #registerForm .full-width:hover {
+  background-color: #474747;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
-body .container .form-container #registerForm select {
+.auth-page .form-container #registerForm select {
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
@@ -103,7 +119,12 @@ body .container .form-container #registerForm select {
   background-color: white;
   color: #808080;
 }
-body .container .navbar {
+
+.main-page {
+  /* main.ejs styling start */
+  /* main.ejs styling end */
+}
+.main-page .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,16 +135,17 @@ body .container .navbar {
   width: 100%;
   z-index: 1000;
   height: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-body .container .navbar .logo-nav {
+.main-page .navbar .logo-nav {
   display: flex;
   justify-content: flex-start;
 }
-body .container .navbar .logo-nav img {
+.main-page .navbar .logo-nav img {
   width: 180px;
   height: auto;
 }
-body .container .navbar .nav-links {
+.main-page .navbar .nav-links {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -131,52 +153,107 @@ body .container .navbar .nav-links {
   gap: 20px;
   margin: 0;
 }
-body .container .navbar .nav-links li a {
+.main-page .navbar .nav-links li a {
   color: black;
   font-weight: 600;
   text-decoration: none;
   font-size: 18px;
   transition: color 0.3s;
 }
-body .container .navbar .nav-links li a:hover {
+.main-page .navbar .nav-links li a:hover {
   color: #ddd;
 }
-body .container .navbar a {
+.main-page .navbar a {
   display: flex;
   justify-content: flex-end;
+  padding-right: 95px;
 }
-body .container .navbar a i {
+.main-page .navbar a i {
   font-size: 24px;
   color: black;
   transition: color 0.3s;
 }
-body .container .navbar a i:hover {
-  color: #ddd;
+.main-page .navbar a i:hover {
+  color: #a00909;
 }
-body footer {
+.main-page .background {
+  margin-top: 50px;
+  padding: 20px;
+  height: 350px;
+  width: auto;
+  background: rgb(2, 0, 36);
+  background: radial-gradient(circle, rgb(2, 0, 36) 0%, rgb(114, 114, 115) 25%, rgb(0, 0, 0) 100%);
+}
+.main-page .background .search-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
+.main-page .background .search-section h1 {
+  text-align: center;
+  color: #f4f4f4;
+}
+.main-page .background .search-section h1 span {
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+.main-page .background .search-section p {
+  text-align: center;
+  color: #f4f4f4;
+}
+.main-page .background .search-section input {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  width: 400px;
+  margin: 30px 10px 30px 10px;
+  padding: 10px 5px 10px 5px;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.main-page .albums {
+  margin-top: 0;
+  height: 500px;
+  width: auto;
+  background-color: #5b5b5b;
+}
+.main-page .studio-sessions {
+  margin-top: 0;
+  height: 300px;
+  width: auto;
+  background-color: #8d8d8d;
+}
+
+.footer-container {
+  /* footer.ejs styling start */
+  /* footer.ejs styling ends */
+}
+.footer-container footer {
   display: flex;
   justify-content: center;
   text-align: center;
   padding: 10px 0;
-  position: fixed;
+  position: static;
   bottom: 0;
   width: 100%;
   min-height: 5vh;
+  margin-top: auto;
 }
-body footer .footer-content {
+.footer-container footer .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 20px;
 }
-body footer .footer-content p {
+.footer-container footer .footer-content p {
   margin: 0;
 }
-body footer .footer-content a i {
+.footer-container footer .footer-content a i {
   font-size: 2rem;
 }
-body footer .footer-content a:hover {
+.footer-container footer .footer-content a:hover {
   background-color: #ccc9c9;
   border-radius: 50%;
 }/*# sourceMappingURL=main.css.map */

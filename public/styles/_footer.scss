@@ -1,0 +1,41 @@
+
+.footer-container {
+    /* footer.ejs styling start */
+    footer {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 0;
+        position: static;
+        bottom: 0; 
+        width: 100%; 
+        min-height: 5vh;
+        margin-top: auto;
+    
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+    
+            p {
+                margin: 0;
+            }
+    
+            a {
+                i {
+                    font-size: 2rem;
+                }
+    
+                &:hover {
+                    background-color: #ccc9c9;
+                    border-radius: 50%;
+                }
+            }
+    
+    
+        }
+    }
+    /* footer.ejs styling ends */
+}
