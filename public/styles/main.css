@@ -7,7 +7,48 @@ body {
   color: #333;
 }
 body .container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+}
+body .container .logo img {
+  width: 500px;
+  height: auto;
+}
+body .container .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 20px;
+}
+body .container .buttons .login-button {
+  cursor: pointer;
+  padding: 5px 50px 5px 50px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+body .container .buttons .login-button:hover {
+  background-color: #f0f0f0;
+}
+body .container .buttons .register-button {
+  cursor: pointer;
+  padding: 5px 50px 5px 50px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+body .container .buttons .register-button:hover {
+  background-color: #7d7c7c;
 }/*# sourceMappingURL=main.css.map */
