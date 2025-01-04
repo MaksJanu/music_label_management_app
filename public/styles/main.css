@@ -56,6 +56,41 @@ body .container .buttons .register-button {
 body .container .buttons .register-button:hover {
   background-color: #7d7c7c;
 }
+body .container .form-container #loginForm, body .container .form-container #registerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+body .container .form-container #loginForm input, body .container .form-container #registerForm input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+body .container .form-container #loginForm .full-width, body .container .form-container #registerForm .full-width {
+  cursor: pointer;
+  padding: 5px 50px 5px 50px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+body .container .form-container #loginForm .full-width:hover, body .container .form-container #registerForm .full-width:hover {
+  background-color: #7d7c7c;
+}
+body .container .form-container #registerForm select {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+  max-width: 300px;
+  background-color: white;
+  color: #808080;
+}
 body footer {
   display: flex;
   justify-content: center;
@@ -64,6 +99,7 @@ body footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  min-height: 5vh;
 }
 body footer .footer-content {
   max-width: 1200px;

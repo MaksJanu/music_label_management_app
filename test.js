@@ -17,17 +17,18 @@ app.get("/", (req, res) => {
 
 
 app.get("/auth", (req, res) => {
-    res.render("auth.ejs")
-})
+    const type = req.query.type;
+    res.render("pages/auth.ejs", { type });
+});
 
 
 app.get("/dashboard", (req, res) => {
-    res.render("dashboard.ejs")
+    res.render("pages/dashboard.ejs")
 })
 
 
 app.get("/profile", (req, res) => {
-    res.render("profile.ejs")
+    res.render("/pages/profile.ejs")
 })
 
 
