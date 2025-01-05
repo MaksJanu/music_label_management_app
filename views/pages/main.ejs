@@ -12,7 +12,11 @@
                 <li><a href="/studio-sessions">Studio Sessions</a></li>
             </ul>
 
-            <a href=""><i class="fa-solid fa-user" style="color: #000000;"></i></a>
+            <a href="#" id="user-icon"><i class="fa-solid fa-user" style="color: #000000;"></i></a>
+            <div id="user-menu">
+                <a href="/change-credentials">Change Credentials</a>
+                <a href="/logout">Logout</a>
+            </div>
         </nav>
 
         <div class="background">
@@ -37,5 +41,7 @@
     </div>
 
     <%- include('../partials/footer') %>
+
+    <script src="/js/userMenu.js"></script>
 </body>
 </html>

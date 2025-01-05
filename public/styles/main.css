@@ -150,8 +150,8 @@ body {
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  gap: 20px;
-  margin: 0;
+  gap: 60px;
+  margin-right: 100px;
 }
 .main-page .navbar .nav-links li a {
   color: black;
@@ -163,18 +163,40 @@ body {
 .main-page .navbar .nav-links li a:hover {
   color: #ddd;
 }
-.main-page .navbar a {
+.main-page .navbar #user-icon {
   display: flex;
   justify-content: flex-end;
-  padding-right: 95px;
+  margin-right: 95px;
 }
-.main-page .navbar a i {
+.main-page .navbar #user-icon i {
   font-size: 24px;
   color: black;
   transition: color 0.3s;
 }
-.main-page .navbar a i:hover {
+.main-page .navbar #user-icon i:hover {
   color: #a00909;
+}
+.main-page .navbar #user-menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 150px;
+  z-index: 1001;
+}
+.main-page .navbar #user-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.main-page .navbar #user-menu a:hover {
+  background-color: #f0f0f0;
 }
 .main-page .background {
   margin-top: 50px;
