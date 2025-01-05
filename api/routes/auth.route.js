@@ -9,10 +9,10 @@ const router = express.Router()
 //Post methods
 router.post("/register", register)
 router.post("/login", passport.authenticate('local'), login)
-router.post("/logout", ensureAuthenticated, logout)
+router.post("/logout", logout)
 
 //Put methods
-router.put("/change-credentials/:mail", ensureAuthenticated, changeCredentials)
+router.put("/change-credentials/:mail", changeCredentials)
 
 
 export default router;

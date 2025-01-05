@@ -29,7 +29,7 @@
             justify-content: center;
             flex-grow: 1;
             gap: 60px;
-            margin-right: 100px;
+            margin-right: 10px;
 
     
             li {
@@ -47,19 +47,27 @@
             }
         }
     
-        #user-icon {
+        .user-icon-container {
             display: flex;
             justify-content: flex-end;
-            margin-right: 95px;
-            
-            i {
-                font-size: 24px;
-                color: black;
-                transition: color 0.3s;
-    
-                &:hover {
-                    color: #a00909;
+            flex-direction: column;
+            margin: 30px 50px 20px 20px;
+
+            #user-icon {
+                text-align: center;
+                i {
+                    font-size: 24px;
+                    color: black;
+                    transition: color 0.3s;
+        
+                    &:hover {
+                        color: #a00909;
+                    }
                 }
+            }
+
+            p {
+                font-size: 0.7rem;
             }
         }
 
@@ -95,8 +103,8 @@
         padding: 20px;
         height: 350px;
         width: auto;
-        background: rgb(2,0,36);
-        background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(114,114,115,1) 25%, rgba(0,0,0,1) 100%);
+        background: url('https://media3.giphy.com/media/mqZT98rFc1VMxoxWxp/200.gif?cid=6c09b9529dhwkdz6l2szxgpc283g27v1x70agdmregt5mdyd&ep=v1_gifs_search&rid=200.gif&ct=g') no-repeat center center;
+        background-size: cover;
 
         .search-section {
             display: flex;

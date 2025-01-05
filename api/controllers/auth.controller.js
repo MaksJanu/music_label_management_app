@@ -14,7 +14,8 @@ const register = async (req, res) => {
         if (err) {
           return res.status(500).json({ message: err.message });
         }
-        return res.status(201).json(newUser);
+        // return res.status(201).json(newUser);
+        return res.redirect('/main');
       });
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -23,16 +24,21 @@ const register = async (req, res) => {
 
 
 const login = (req, res) => {
-    res.status(200).json({ message: 'Logged in successfully' });
+  res.redirect('/main');
 }
 
 
 const logout = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to log out' });
+    }
+  })
     req.session.destroy((err) => {
       if (err) {
-        return res.status(500).json({ message: 'Failed to log out' });
+        return res.status(500).json({ message: 'Failed to destroy a session' });
       }
-      res.status(200).json({ message: 'Logged out successfully' });
+      res.redirect('/');
     });
 }
 

@@ -2,7 +2,7 @@ export function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.status(401).json({ message: 'Unauthorized' });
+    res.redirect('/');
 }
   
 export function ensureArtistRole(req, res, next) {
@@ -17,4 +17,4 @@ export function ensureUserRole(req, res, next) {
       return next();
   }
   res.status(403).json({ message: 'Forbidden: Only artists can perform this action' });
-  }
+}

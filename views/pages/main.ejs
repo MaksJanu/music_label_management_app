@@ -12,10 +12,13 @@
                 <li><a href="/studio-sessions">Studio Sessions</a></li>
             </ul>
 
-            <a href="#" id="user-icon"><i class="fa-solid fa-user" style="color: #000000;"></i></a>
+            <div class="user-icon-container">
+                <a href="#" id="user-icon"><i class="fa-solid fa-user" style="color: #000000;"></i></a>
+                <p>Logged in as: <strong><%= user.email %></strong></p>
+            </div>
             <div id="user-menu">
-                <a href="/change-credentials">Change Credentials</a>
-                <a href="/logout">Logout</a>
+                <a href="/auth/change-credentials">Change Credentials</a>
+                <a href="/auth/logout">Logout</a>
             </div>
         </nav>
 

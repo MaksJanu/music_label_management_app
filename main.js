@@ -21,8 +21,11 @@ import userRoutes from "./api/routes/user.route.js";
 import studioSessionRoutes from "./api/routes/studio-session.route.js";
 import albumRoutes from "./api/routes/album.route.js";
 
+//Importing middleware
+import { ensureAuthenticated } from "./api/middleware/auth.js";
 
 
+//Creating express app
 const app = express();
 const PORT = process.env.PORT;
 
@@ -31,6 +34,13 @@ const PORT = process.env.PORT;
 //Middleware do parsowania danych
 app.use(express.json());
 app.use(bodyParser.urlencoded( { extended: true }))
+
+
+//Middleware do obsługi plików statycznych
+app.use(express.static("public"));
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
 
 // Konfiguracja sesji logowania podpisana kluczem
 app.use(session({
@@ -95,6 +105,39 @@ app.use("/api/album", albumRoutes)
 
 //Studio Sessions routes
 app.use("/api/studio-session", studioSessionRoutes)
+
+
+
+
+// Rendering for login and register
+app.get("/", (req, res) => {
+  res.render("start.ejs");
+});
+
+app.get("/auth", (req, res) => {
+  const type = req.query.type;
+  res.render("pages/auth.ejs", { type });
+});
+
+app.get("/main", ensureAuthenticated, (req, res) => {
+  res.render("pages/main.ejs", { user: req.user });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
