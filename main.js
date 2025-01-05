@@ -7,6 +7,7 @@ dotenv.config();
 import bodyParser from "body-parser";
 
 
+
 //Importing models
 import User from "./api/models/user.model.js";
 
@@ -30,7 +31,6 @@ const app = express();
 const PORT = process.env.PORT;
 
 
-
 //Middleware do parsowania danych
 app.use(express.json());
 app.use(bodyParser.urlencoded( { extended: true }))
@@ -45,10 +45,14 @@ app.set('view engine', 'ejs');
 // Konfiguracja sesji logowania podpisana kluczem
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
+  resave: true,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
-  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 dzień
+  store: MongoStore.create({ 
+    mongoUrl: process.env.MONGODB_URL,
+  }),
+  cookie: { 
+    maxAge: 1000 * 60 * 60 * 24, // 1 dzień
+  }
 }));
 
 // Inicjalizacja biblioteki do uwierzytelniania uzytkownikow

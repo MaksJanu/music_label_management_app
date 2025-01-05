@@ -31,15 +31,16 @@ const login = (req, res) => {
 const logout = (req, res) => {
   req.logout((err) => {
     if (err) {
-      return res.status(500).json({ message: 'Failed to log out' });
+      return next(err);
     }
-  })
     req.session.destroy((err) => {
       if (err) {
-        return res.status(500).json({ message: 'Failed to destroy a session' });
+        return next(err);
       }
+      res.clearCookie('connect.sid');
       res.redirect('/');
     });
+  });
 }
 
 

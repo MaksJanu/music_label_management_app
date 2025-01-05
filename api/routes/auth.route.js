@@ -9,7 +9,7 @@ const router = express.Router()
 //Post methods
 router.post("/register", register)
 router.post("/login", passport.authenticate('local'), login)
-router.post("/logout", logout)
+router.get("/logout", logout)
 
 //Put methods
 router.put("/change-credentials/:mail", changeCredentials)
