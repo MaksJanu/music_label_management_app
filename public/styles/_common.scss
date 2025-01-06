@@ -102,11 +102,12 @@
         justify-content: center;
         text-align: center;
         padding: 10px 0;
-        position: static;
+        position: sticky;
         bottom: 0; 
         width: 100%; 
         min-height: 5vh;
         margin-top: auto;
+        background-color: #F8FAFC; 
 
         .footer-content {
             max-width: 1200px;

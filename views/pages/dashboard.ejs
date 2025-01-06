@@ -14,6 +14,10 @@
                 <div class="albums-display">
                 </div>
 
+                <button class="dashboard-album-button" onclick="location.href='/album'">Upload Album</button>
+
+                <button class="dashboard-studio-button" onclick="location.href='/studio-session'">Plan Studio Session</button>
+
                 <div class="sessions-display">
                 </div>
 
@@ -21,6 +25,11 @@
                 </div>
 
                 <div class="chat">
+                    <div class="chat-messages"></div>
+                    <form id="chat-form">
+                        <input type="text" id="message-input" placeholder="Type a message...">
+                        <button type="submit">Send</button>
+                    </form>
                 </div>
 
             </div>
