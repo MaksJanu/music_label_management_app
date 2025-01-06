@@ -25,9 +25,9 @@ const albumSchema = mongoose.Schema(
 
     tracks: [{ type: String }],
 
-    imageUrl: {
-        type: String,
-        required: false
+    image: {
+      data: Buffer,
+      contentType: String
     }
   },
   {

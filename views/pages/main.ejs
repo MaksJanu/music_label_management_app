@@ -31,10 +31,20 @@
             </div>
         </div>
 
-        <div class="albums">
+        <div class="albums-section">
+            <div class="albums">
+                <h2>Latest Albums</h2>
+                <% albums.forEach(album => { %>
+                    <div class="album">
+                        <img src="data:<%= album.image.contentType %>;base64,<%= album.image.data.toString('base64') %>" alt="<%= album.title %>">
+                        <h3><%= album.title %></h3>
+                        <p><%= album.artist %></p>
+                    </div>
+                <% }) %>
+            </div>
         </div>
 
-        <div class="studio-sessions">
+        <div class="studio-sessions-section">
         </div>
 
         <div class="chat">

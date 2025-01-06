@@ -139,14 +139,42 @@
         }
     }
 
-    .albums {
+    .albums-section {
         margin-top: 0;
         height: 500px;
         width: auto;
         background-color: #5b5b5b;
+
+        .albums {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 30px;
+            margin-top: 20px;
+
+            .album {
+                text-align: center;
+      
+                img {
+                  width: 200px;
+                  height: 200px;
+                  object-fit: cover;
+                  border-radius: 8px;
+                }
+          
+                h3 {
+                  margin: 10px 0 5px 0;
+                }
+          
+                p {
+                  color: #666;
+                }
+            }
+        }
     }
 
-    .studio-sessions {
+    .studio-sessions-section {
         margin-top: 0;
         height: 300px;
         width: auto;

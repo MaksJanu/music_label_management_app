@@ -28,8 +28,8 @@ const getSpecificAlbums = async (req, res) => {
 
 const postAlbum = async (req, res) => {
     try {
-        const { artistName } = req.params;
         const { title } = req.body;
+        const loggedArtist = req.user.name
 
         const searchedArtist = await User.findOne({ name: artistName, role: 'artist' });
         if (!searchedArtist) {
@@ -41,7 +41,14 @@ const postAlbum = async (req, res) => {
           return res.status(400).json({ message: "Album with this title already exists for this artist" });
         }
 
-        const newAlbum = await Album.create(req.body);
+        const newAlbum = await Album.create({
+          ...req.body,
+          artist: loggedArtist,
+          image: {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+          }
+        });
 
         searchedArtist.albums.push(newAlbum._id);
         await searchedArtist.save();

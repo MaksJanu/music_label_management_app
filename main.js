@@ -123,8 +123,19 @@ app.get("/auth", (req, res) => {
   res.render("pages/auth.ejs", { type });
 });
 
-app.get("/main", ensureAuthenticated, (req, res) => {
-  res.render("pages/main.ejs", { user: req.user });
+app.get("/main", ensureAuthenticated, async (req, res) => {
+  try {
+    const latestAlbums = await Album.find({}).sort({ createdAt: -1 }).limit(3);
+    res.render("pages/main.ejs", { 
+      user: req.user,
+      albums: featuredAlbums 
+    });
+  } catch (error) {
+    res.render("pages/main.ejs", { 
+      user: req.user ,
+      albums: []
+    });
+  }
 });
 
 
