@@ -1,102 +1,7 @@
-    
+@import 'common';
+
 .main-page {
     /* main.ejs styling start */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #F8FAFC;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        height: 50px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    
-        .logo-nav {
-            display: flex;
-            justify-content: flex-start;
-            img {
-                width: 180px;
-                height: auto;
-            }
-        }
-    
-        .nav-links {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-grow: 1;
-            gap: 60px;
-            margin-right: 10px;
-
-    
-            li {
-                a {
-                    color: black;
-                    font-weight: 600;
-                    text-decoration: none;
-                    font-size: 18px;
-                    transition: color 0.3s;
-    
-                    &:hover {
-                        color: #ddd;
-                    }
-                }
-            }
-        }
-    
-        .user-icon-container {
-            display: flex;
-            justify-content: flex-end;
-            flex-direction: column;
-            margin: 30px 50px 20px 20px;
-
-            #user-icon {
-                text-align: center;
-                i {
-                    font-size: 24px;
-                    color: black;
-                    transition: color 0.3s;
-        
-                    &:hover {
-                        color: #a00909;
-                    }
-                }
-            }
-
-            p {
-                font-size: 0.7rem;
-            }
-        }
-
-        #user-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 50px; 
-            background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            width: 150px;
-            z-index: 1001;
-
-            a {
-                display: block;
-                padding: 10px;
-                color: black;
-                text-decoration: none;
-                transition: background-color 0.3s;
-
-                &:hover {
-                    background-color: #f0f0f0;
-                }
-            }
-        }
-    }
-
 
     .background {
         margin-top: 50px;
@@ -135,6 +40,50 @@
                 padding: 10px 5px 10px 5px;
                 font-size: 1rem;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+            }
+
+            .artist-buttons {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+
+                .button-album {
+                    cursor: pointer;
+                    padding: 5px 20px 5px 20px;
+                    font-size: 20px;
+                    font-weight: 600;
+                    background-color: white;
+                    border: 2px solid black;
+                    border-radius: 10px;
+                    transition: background-color 0.3s;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    
+                    &:hover {
+                        background-color: #f0f0f0;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+                    }
+                }
+
+                .button-studio {
+                    cursor: pointer;
+                    padding: 5px 30px 5px 30px;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: white;
+                    background-color: black;
+                    border: 1px solid black;
+                    border-radius: 10px;
+                    transition: background-color 0.3s;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    
+                    &:hover {
+                        background-color: #474747;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+                    }
+                }
             }
         }
     }

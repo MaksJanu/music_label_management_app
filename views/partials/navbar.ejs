@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="logo-nav">
+        <img src="/images/trackTrails.svg" alt="Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/albums">Albums</a></li>
+        <li><a href="/studio-sessions">Studio Sessions</a></li>
+    </ul>
+
+    <div class="user-icon-container">
+        <a href="#" id="user-icon"><i class="fa-solid fa-user" style="color: #000000;"></i></a>
+        <p>Logged in as: <strong><%= user.email %></strong></p>
+    </div>
+    <div id="user-menu">
+        <a href="/auth/change-credentials">Change Credentials</a>
+        <a href="/auth/logout">Logout</a>
+    </div>
+</nav>

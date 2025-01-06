@@ -1,0 +1,135 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #F8FAFC;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+
+    .logo-nav {
+        display: flex;
+        justify-content: flex-start;
+        img {
+            width: 180px;
+            height: auto;
+        }
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        gap: 60px;
+        margin-right: 10px;
+
+        li {
+            a {
+                color: black;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 18px;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: #ddd;
+                }
+            }
+        }
+    }
+
+    .user-icon-container {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        margin: 30px 50px 20px 20px;
+
+        #user-icon {
+            text-align: center;
+            i {
+                font-size: 24px;
+                color: black;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: #a00909;
+                }
+            }
+        }
+
+        p {
+            font-size: 0.7rem;
+        }
+    }
+
+    #user-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 50px; 
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        width: 150px;
+        z-index: 1001;
+
+        a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+        }
+    }
+}
+
+
+
+.footer-container {
+    /* footer.ejs styling start */
+    footer {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 0;
+        position: static;
+        bottom: 0; 
+        width: 100%; 
+        min-height: 5vh;
+        margin-top: auto;
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            p {
+                margin: 0;
+            }
+
+            a {
+                i {
+                    font-size: 2rem;
+                }
+
+                &:hover {
+                    background-color: #ccc9c9;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+    /* footer.ejs styling ends */
+}

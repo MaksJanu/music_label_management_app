@@ -1,0 +1,57 @@
+@import 'common';
+
+.dashboard-page {
+
+    .dashboard-section {
+        margin-top: 150px;
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1000px;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+
+
+        .user-details {
+            width: 300px;
+            height: 100px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+                .albums-display {
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .sessions-display {
+            width: 300px;
+            height: 100px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .chat {
+            width: 600px;
+            height: 410px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+            flex-grow: 1;
+        }
+    }
+}

@@ -120,11 +120,7 @@ body {
   color: #808080;
 }
 
-.main-page {
-  /* main.ejs styling start */
-  /* main.ejs styling end */
-}
-.main-page .navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -137,15 +133,15 @@ body {
   height: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.main-page .navbar .logo-nav {
+.navbar .logo-nav {
   display: flex;
   justify-content: flex-start;
 }
-.main-page .navbar .logo-nav img {
+.navbar .logo-nav img {
   width: 180px;
   height: auto;
 }
-.main-page .navbar .nav-links {
+.navbar .nav-links {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -153,37 +149,37 @@ body {
   gap: 60px;
   margin-right: 10px;
 }
-.main-page .navbar .nav-links li a {
+.navbar .nav-links li a {
   color: black;
   font-weight: 600;
   text-decoration: none;
   font-size: 18px;
   transition: color 0.3s;
 }
-.main-page .navbar .nav-links li a:hover {
+.navbar .nav-links li a:hover {
   color: #ddd;
 }
-.main-page .navbar .user-icon-container {
+.navbar .user-icon-container {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
   margin: 30px 50px 20px 20px;
 }
-.main-page .navbar .user-icon-container #user-icon {
+.navbar .user-icon-container #user-icon {
   text-align: center;
 }
-.main-page .navbar .user-icon-container #user-icon i {
+.navbar .user-icon-container #user-icon i {
   font-size: 24px;
   color: black;
   transition: color 0.3s;
 }
-.main-page .navbar .user-icon-container #user-icon i:hover {
+.navbar .user-icon-container #user-icon i:hover {
   color: #a00909;
 }
-.main-page .navbar .user-icon-container p {
+.navbar .user-icon-container p {
   font-size: 0.7rem;
 }
-.main-page .navbar #user-menu {
+.navbar #user-menu {
   display: none;
   position: absolute;
   top: 70px;
@@ -195,15 +191,53 @@ body {
   width: 150px;
   z-index: 1001;
 }
-.main-page .navbar #user-menu a {
+.navbar #user-menu a {
   display: block;
   padding: 10px;
   color: black;
   text-decoration: none;
   transition: background-color 0.3s;
 }
-.main-page .navbar #user-menu a:hover {
+.navbar #user-menu a:hover {
   background-color: #f0f0f0;
+}
+
+.footer-container {
+  /* footer.ejs styling start */
+  /* footer.ejs styling ends */
+}
+.footer-container footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 0;
+  position: static;
+  bottom: 0;
+  width: 100%;
+  min-height: 5vh;
+  margin-top: auto;
+}
+.footer-container footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.footer-container footer .footer-content p {
+  margin: 0;
+}
+.footer-container footer .footer-content a i {
+  font-size: 2rem;
+}
+.footer-container footer .footer-content a:hover {
+  background-color: #ccc9c9;
+  border-radius: 50%;
+}
+
+.main-page {
+  /* main.ejs styling start */
+  /* main.ejs styling end */
 }
 .main-page .background {
   margin-top: 50px;
@@ -241,17 +275,162 @@ body {
   font-size: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.main-page .albums {
+.main-page .background .search-section .artist-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.main-page .background .search-section .artist-buttons .button-album {
+  cursor: pointer;
+  padding: 5px 20px 5px 20px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.main-page .background .search-section .artist-buttons .button-album:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+}
+.main-page .background .search-section .artist-buttons .button-studio {
+  cursor: pointer;
+  padding: 5px 30px 5px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.main-page .background .search-section .artist-buttons .button-studio:hover {
+  background-color: #474747;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+}
+.main-page .albums-section {
   margin-top: 0;
   height: 500px;
   width: auto;
   background-color: #5b5b5b;
 }
-.main-page .studio-sessions {
+.main-page .albums-section .albums {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 20px;
+}
+.main-page .albums-section .albums .album {
+  text-align: center;
+}
+.main-page .albums-section .albums .album img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.main-page .albums-section .albums .album h3 {
+  margin: 10px 0 5px 0;
+}
+.main-page .albums-section .albums .album p {
+  color: #666;
+}
+.main-page .studio-sessions-section {
   margin-top: 0;
   height: 300px;
   width: auto;
   background-color: #8d8d8d;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #F8FAFC;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.navbar .logo-nav {
+  display: flex;
+  justify-content: flex-start;
+}
+.navbar .logo-nav img {
+  width: 180px;
+  height: auto;
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 60px;
+  margin-right: 10px;
+}
+.navbar .nav-links li a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+.navbar .nav-links li a:hover {
+  color: #ddd;
+}
+.navbar .user-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin: 30px 50px 20px 20px;
+}
+.navbar .user-icon-container #user-icon {
+  text-align: center;
+}
+.navbar .user-icon-container #user-icon i {
+  font-size: 24px;
+  color: black;
+  transition: color 0.3s;
+}
+.navbar .user-icon-container #user-icon i:hover {
+  color: #a00909;
+}
+.navbar .user-icon-container p {
+  font-size: 0.7rem;
+}
+.navbar #user-menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 150px;
+  z-index: 1001;
+}
+.navbar #user-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.navbar #user-menu a:hover {
+  background-color: #f0f0f0;
 }
 
 .footer-container {
@@ -285,4 +464,51 @@ body {
 .footer-container footer .footer-content a:hover {
   background-color: #ccc9c9;
   border-radius: 50%;
+}
+
+.dashboard-page .dashboard-section {
+  margin-top: 150px;
+}
+.dashboard-page .dashboard-section .container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+.dashboard-page .dashboard-section .user-details {
+  width: 300px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+}
+.dashboard-page .dashboard-section .albums-display {
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+}
+.dashboard-page .dashboard-section .sessions-display {
+  width: 300px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+}
+.dashboard-page .dashboard-section .chat {
+  width: 600px;
+  height: 410px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  flex-grow: 1;
 }/*# sourceMappingURL=main.css.map */

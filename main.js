@@ -138,6 +138,9 @@ app.get("/main", ensureAuthenticated, async (req, res) => {
   }
 });
 
+app.get("/dashboard", ensureAuthenticated, (req, res) => {
+  res.render("pages/dashboard.ejs", { user: req.user });
+});
 
 
 
