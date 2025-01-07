@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 import bodyParser from "body-parser";
-
+import { Server } from 'socket.io';
+import { createServer } from 'http';
 
 
 //Importing models
@@ -144,7 +145,21 @@ app.get("/dashboard", ensureAuthenticated, (req, res) => {
 
 
 
+// Create HTTP server and Socket.IO server
+const server = createServer(app);
+const io = new Server(server);
 
+io.on('connection', (socket) => {
+  console.log('User connected');
+
+  socket.on('chatMessage', (data) => {
+    io.emit('message', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
 
 
 
@@ -162,7 +177,7 @@ app.get("/dashboard", ensureAuthenticated, (req, res) => {
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Connected!");
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Server started at port ${PORT}`);
     });
   })
