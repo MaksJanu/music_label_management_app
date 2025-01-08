@@ -143,6 +143,10 @@ app.get("/dashboard", ensureAuthenticated, (req, res) => {
   res.render("pages/dashboard.ejs", { user: req.user });
 });
 
+app.get("/add-album", ensureAuthenticated, (req, res) => {
+  res.render("pages/add_album.ejs", { user: req.user });
+});
+
 
 
 // Create HTTP server and Socket.IO server

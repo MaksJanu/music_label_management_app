@@ -31,12 +31,12 @@ const postAlbum = async (req, res) => {
         const { title } = req.body;
         const loggedArtist = req.user.name
 
-        const searchedArtist = await User.findOne({ name: artistName, role: 'artist' });
+        const searchedArtist = await User.findOne({ name: loggedArtist, role: 'artist' });
         if (!searchedArtist) {
             return res.status(404).json({ message: "Artist not found" });
         }
 
-        const existingAlbum = await Album.findOne({ title, artist: searchedArtist.name });
+        const existingAlbum = await Album.findOne({ title, artist: loggedArtist });
         if (existingAlbum) {
           return res.status(400).json({ message: "Album with this title already exists for this artist" });
         }

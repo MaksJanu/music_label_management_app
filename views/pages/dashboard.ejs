@@ -26,7 +26,7 @@
 
                 <div class="chat">
                     <div class="chat-messages"></div>
-                    <form id="chat-form">
+                    <form id="chat-form" data-user-role="<%= user.role %>">
                         <input type="text" id="message-input" placeholder="Type a message...">
                         <button type="submit">Send</button>
                     </form>
@@ -39,9 +39,10 @@
     </div>
 
     <%- include('../partials/footer') %>
-
-    <script src="/js/userMenu.js"></script>
+    
     <script src="/socket.io/socket.io.js"></script>
-<script src="/js/userChat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="/js/userMenu.js"></script>
+    <script src="/js/userChat.js"></script>
 </body>
 </html>

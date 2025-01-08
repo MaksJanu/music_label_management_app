@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<body class="album-page">
+    <div class="main-container">
+
+        <%- include('../partials/navbar') %>
+
+        <form id="albumForm" method="post" action="/api/album" enctype="multipart/form-data" onsubmit="return handleSubmit(event)">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="genre" placeholder="Genre" required>
+            <input type="date" name="releaseDate" placeholder="Release date" required>
+            <div class="add-tracks">
+                <input type="text" name="tracklist" placeholder="Track" required>
+                <button class="add-track" type="button">+</button>
+            </div>
+            <input id="cover-input" type="file" name="image" placeholder="Cover" accept="image/*" required>
+            <button class="full-width" type="submit">Upload</button>
+        </form>
+
+    </div>
+
+    <%- include('../partials/footer') %>
+
+    <script src="/js/userMenu.js"></script>
+    <script src="/js/addTracks.js"></script>
+    <script src="/js/albumSubmit.js"></script>
+</body>
+</html>
