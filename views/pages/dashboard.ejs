@@ -9,20 +9,49 @@
             <div class="container">
 
                 <div class="user-details">
+                    <p><strong>E-mail:</strong> <%= user.email %></p>
+                    <p><strong>Role:</strong> <%= _.capitalize(user.role) %></p>
+                    <p><strong>Created at:</strong> <%= user.createdAt %></p>
                 </div>
 
                 <div class="albums-display">
+                    <% if (albums.length > 0) { %>
+                        <div class="albums-slider">
+                            <% albums.forEach(album => { %>
+                                <div class="album">
+                                    <img src="data:<%= album.image.contentType %>;base64,<%= album.image.data.toString('base64') %>" alt="<%= album.title %>">
+                                    <h3><%= album.title %></h3>
+                                    <h4><%= album.genre %></h4>
+                                    <p><%= album.artist %></p>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } else { %>
+                        <p>No albums found.</p>
+                    <% } %>
                 </div>
 
-                <button class="dashboard-album-button" onclick="location.href='/album'">Upload Album</button>
 
-                <button class="dashboard-studio-button" onclick="location.href='/studio-session'">Plan Studio Session</button>
+                <button class="dashboard-album-button" onclick="location.href='/add-album'">Upload Album</button>
+                <button class="dashboard-studio-button" onclick="location.href='/add-studio-session'">Plan Studio Session</button>
 
                 <div class="sessions-display">
+                    <% if (sessions.length > 0) { %>
+                        <div class="sessions-slider">
+                            <% sessions.forEach(session => { %>
+                                <div class="session">
+                                    <i class="fa-solid fa-microphone" style="color: #000000;"></i>
+                                    <h3><%= session.title %></h3>
+                                    <h4><%= session.formattedDate %></h4>
+                                    <p><%= session.details %></p>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } else { %>
+                        <p>No studio sessions found.</p>
+                    <% } %>
                 </div>
 
-                <div class="user-buttons">
-                </div>
 
                 <div class="chat">
                     <div class="chat-messages"></div>
@@ -35,7 +64,6 @@
             </div>
         </div>
 
-
     </div>
 
     <%- include('../partials/footer') %>
@@ -44,5 +72,6 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="/js/userMenu.js"></script>
     <script src="/js/userChat.js"></script>
+    <script src="/js/reload.js"></script>
 </body>
 </html>

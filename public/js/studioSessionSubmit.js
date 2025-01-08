@@ -1,3 +1,8 @@
+window.onload = function() {
+    document.getElementById('albumForm').reset();
+}
+
+
 async function handleSubmit(event) {
     event.preventDefault();
     

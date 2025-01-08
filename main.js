@@ -7,10 +7,13 @@ dotenv.config();
 import bodyParser from "body-parser";
 import { Server } from 'socket.io';
 import { createServer } from 'http';
-
+import _ from 'lodash';
+import moment from 'moment';
 
 //Importing models
 import User from "./api/models/user.model.js";
+import Album from "./api/models/album.model.js";
+import StudioSession from "./api/models/studio-session.model.js";
 
 
 import passport from "passport";
@@ -119,29 +122,52 @@ app.get("/", (req, res) => {
   res.render("start.ejs");
 });
 
+
 app.get("/auth", (req, res) => {
   const type = req.query.type;
   res.render("pages/auth.ejs", { type });
 });
 
+
 app.get("/main", ensureAuthenticated, async (req, res) => {
   try {
-    const latestAlbums = await Album.find({}).sort({ createdAt: -1 }).limit(3);
+    const latestAlbums = await Album.find({}).sort({ createdAt: -1 }).limit(4);
+    const lastestStudioSessions = await StudioSession.find({}).sort({ createdAt: -1 });
+
     res.render("pages/main.ejs", { 
       user: req.user,
-      albums: featuredAlbums 
+      albums: latestAlbums,
+      studioSessions: lastestStudioSessions,
     });
   } catch (error) {
     res.render("pages/main.ejs", { 
       user: req.user ,
-      albums: []
+      albums: [],
+      studioSessions: [],
     });
   }
 });
 
-app.get("/dashboard", ensureAuthenticated, (req, res) => {
-  res.render("pages/dashboard.ejs", { user: req.user });
+
+app.get("/dashboard", ensureAuthenticated, async (req, res) => {
+  try {
+    if (req.user.role === 'artist') {
+      const userAlbums = await Album.find({ artist: req.user.name });
+      const userStudioSessions = await StudioSession.find({ artist: req.user.name });
+      const formattedSessions = userStudioSessions.map(session => ({
+        ...session._doc,
+        formattedDate: moment(session.date).format('YYYY-MM-DD HH:mm')
+      }));
+
+      res.render("pages/dashboard.ejs", { user: req.user, albums: userAlbums, sessions: formattedSessions, _ });
+    } else {
+      res.render("pages/dashboard.ejs", { user: req.user, albums: [], sessions: [], _ });
+    }
+  } catch (error) {
+    res.render("pages/dashboard.ejs", { user: req.user, albums: [], sessions: [], _ });
+  }
 });
+
 
 app.get("/add-album", ensureAuthenticated, (req, res) => {
   res.render("pages/add_album.ejs", { user: req.user });

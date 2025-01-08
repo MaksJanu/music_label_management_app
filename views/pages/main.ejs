@@ -18,12 +18,13 @@
         </div>
 
         <div class="albums-section">
+            <h1>Latest Albums</h1>
             <div class="albums">
-                <h2>Latest Albums</h2>
                 <% albums.forEach(album => { %>
                     <div class="album">
                         <img src="data:<%= album.image.contentType %>;base64,<%= album.image.data.toString('base64') %>" alt="<%= album.title %>">
                         <h3><%= album.title %></h3>
+                        <h4><%= album.genre %></h4>
                         <p><%= album.artist %></p>
                     </div>
                 <% }) %>
@@ -31,6 +32,19 @@
         </div>
 
         <div class="studio-sessions-section">
+            <h1>Upcoming Studio Sessions</h1>
+            <div class="studio-sessions">
+                <% studioSessions.forEach(studioSession => { %>
+                    <div class="studio-session">
+                        <i class="fa-solid fa-microphone" style="color: #000000;"></i>
+                        <h2><%= studioSession.artist %></h2>
+                        <h3><%= studioSession.title %></h3>
+                        <p><strong><%= studioSession.date %></strong></p>
+                        <p><strong>Description:</strong> <%= studioSession.details %></p>
+                        <p><strong>Duration:</strong> <%= studioSession.duration %> min</p>
+                    </div>
+                <% }) %>
+            </div>
         </div>
 
     </div>
@@ -38,5 +52,6 @@
     <%- include('../partials/footer') %>
 
     <script src="/js/userMenu.js"></script>
+    <script src="/js/reload.js"></script>
 </body>
 </html>

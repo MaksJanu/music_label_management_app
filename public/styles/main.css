@@ -244,7 +244,7 @@ body {
 .main-page .background {
   margin-top: 50px;
   padding: 20px;
-  height: 350px;
+  height: 380px;
   width: auto;
   background: url("https://media3.giphy.com/media/mqZT98rFc1VMxoxWxp/200.gif?cid=6c09b9529dhwkdz6l2szxgpc283g27v1x70agdmregt5mdyd&ep=v1_gifs_search&rid=200.gif&ct=g") no-repeat center center;
   background-size: cover;
@@ -259,6 +259,7 @@ body {
 .main-page .background .search-section h1 {
   text-align: center;
   color: #f4f4f4;
+  font-size: 2.5rem;
 }
 .main-page .background .search-section h1 span {
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
@@ -317,10 +318,15 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
 .main-page .albums-section {
-  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 500px;
   width: auto;
-  background-color: #5b5b5b;
+}
+.main-page .albums-section h1 {
+  padding-bottom: 20px;
 }
 .main-page .albums-section .albums {
   display: flex;
@@ -343,14 +349,72 @@ body {
 .main-page .albums-section .albums .album h3 {
   margin: 10px 0 5px 0;
 }
+.main-page .albums-section .albums .album h4 {
+  margin: 10px 0 5px 0;
+}
 .main-page .albums-section .albums .album p {
   color: #666;
 }
 .main-page .studio-sessions-section {
-  margin-top: 0;
-  height: 300px;
-  width: auto;
-  background-color: #8d8d8d;
+  margin: auto;
+  height: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  padding-bottom: 40px;
+}
+.main-page .studio-sessions-section h1 {
+  padding: 20px;
+  text-align: center;
+  margin: 0;
+}
+.main-page .studio-sessions-section .studio-sessions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  padding: 10px;
+  width: 40%;
+  max-height: 400px;
+}
+.main-page .studio-sessions-section .studio-sessions .studio-session {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f9f9f9;
+  scroll-snap-align: start;
+}
+.main-page .studio-sessions-section .studio-sessions .studio-session i {
+  font-size: 1.5rem;
+  text-align: center;
+}
+.main-page .studio-sessions-section .studio-sessions .studio-session h2 {
+  margin: 5px 0;
+}
+.main-page .studio-sessions-section .studio-sessions .studio-session h3 {
+  margin: 5px 0;
+}
+.main-page .studio-sessions-section .studio-sessions .studio-session h4 {
+  margin: 5px 0;
+}
+.main-page .studio-sessions-section .studio-sessions .studio-session p {
+  color: #666;
+  margin: 5px 0;
 }
 
 .navbar {
@@ -496,6 +560,10 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 10px;
+  padding-left: 15px;
+}
+.dashboard-page .main-container .dashboard-section .user-details p {
+  font-size: 0.85rem;
 }
 .dashboard-page .main-container .dashboard-section .albums-display {
   grid-column: 1/3;
@@ -504,6 +572,30 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider {
+  display: flex;
+  gap: 30px;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album h3, .dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album h4, .dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album p {
+  margin: 5px 0;
 }
 .dashboard-page .main-container .dashboard-section .sessions-display {
   grid-column: 1/3;
@@ -512,6 +604,36 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 10px;
+  overflow-y: auto;
+  padding: 10px;
+  height: 180px;
+}
+.dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session i {
+  font-size: 1rem;
+}
+.dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session h3, .dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session h4, .dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session p {
+  margin: 0;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session h3, .dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session h4, .dashboard-page .main-container .dashboard-section .sessions-display .sessions-slider .session p {
+  flex: 1;
 }
 .dashboard-page .main-container .dashboard-section .dashboard-album-button {
   grid-column: 2/3;
@@ -525,6 +647,8 @@ body {
   border-radius: 10px;
   transition: background-color 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  height: 50px;
+  margin-top: 20px;
 }
 .dashboard-page .main-container .dashboard-section .dashboard-album-button:hover {
   background-color: #f0f0f0;
@@ -543,6 +667,7 @@ body {
   border-radius: 10px;
   transition: background-color 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+  height: 50px;
 }
 .dashboard-page .main-container .dashboard-section .dashboard-studio-button:hover {
   background-color: #474747;
