@@ -1,10 +1,11 @@
 <%- include('../partials/header') %>
 
-<body class="album-page">
+<body class="addAlbum-page">
     <div class="main-container">
 
         <%- include('../partials/navbar') %>
 
+        <h1>Upload an Album</h1>
         <form id="albumForm" method="post" action="/api/album" enctype="multipart/form-data" onsubmit="return handleSubmit(event)">
             <input type="text" name="title" placeholder="Title" required>
             <input type="text" name="genre" placeholder="Genre" required>

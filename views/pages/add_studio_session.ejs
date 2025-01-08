@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<body class="addSession-page">
+    <div class="main-container">
+
+        <%- include('../partials/navbar') %>
+
+        <h1>Plan a Studio Session</h1>
+        <form id="studioSessionForm" method="post" action="/api/studio-session" onsubmit="return handleSubmit(event)">
+            <input type="date" name="date" placeholder="Date" required>
+            <input type="number" name="duration" placeholder="Duration in minutes" required>
+            <input type="text" name="details" placeholder="Details" required>
+            <button class="full-width" type="submit">Plan</button>
+        </form>
+
+    </div>
+
+    <%- include('../partials/footer') %>
+
+    <script src="/js/userMenu.js"></script>
+    <script src="/js/studioSessionSubmit.js"></script>
+</body>
+</html>

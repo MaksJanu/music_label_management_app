@@ -26,9 +26,9 @@ const getSpecificStudioSessions = async (req, res) => {
 
 const postStudioSession = async (req, res) => {
     try {
-      const { artistName } = req.params
+      const loggedArtist = req.user.name
       const { details } = req.body
-      const searchedArtist = await User.findOne({name: artistName, role: "artist"})
+      const searchedArtist = await User.findOne({name: loggedArtist, role: "artist"})
       if (!searchedArtist) {
         return res.status(404).json({ message: "Artist not found" });
       }
@@ -38,7 +38,10 @@ const postStudioSession = async (req, res) => {
         return res.status(404).json({ message: "Session with the same details already exists!" })
       }
     
-      const newSession = await StudioSession.create(req.body);
+      const newSession = await StudioSession.create({
+        ...req.body,
+        artist: loggedArtist
+      });
     
       searchedArtist.studioSessions.push(newSession._id);
       await searchedArtist.save();

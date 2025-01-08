@@ -10,7 +10,7 @@ router.get("/", ensureAuthenticated, ensureArtistRole, getAllStudioSessions)
 router.get("/:artistName", ensureAuthenticated, ensureArtistRole, getSpecificStudioSessions)
 
 //Post methods
-router.post("/:artistName", ensureAuthenticated, ensureArtistRole, postStudioSession)
+router.post("/", ensureAuthenticated, ensureArtistRole, postStudioSession)
 
 //Delete methods
 router.delete("/:id", ensureAuthenticated, ensureArtistRole, deleteStudioSession)

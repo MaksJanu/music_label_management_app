@@ -148,6 +148,16 @@ app.get("/add-album", ensureAuthenticated, (req, res) => {
 });
 
 
+app.get("/add-studio-session", ensureAuthenticated, (req, res) => {
+  res.render("pages/add_studio_session.ejs", { user: req.user });
+});
+
+
+
+
+
+
+
 
 // Create HTTP server and Socket.IO server
 const server = createServer(app);

@@ -616,7 +616,7 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
 
-.album-page .main-container {
+.addAlbum-page .main-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -624,7 +624,7 @@ body {
   align-items: center;
   margin-top: 50px;
 }
-.album-page .main-container #albumForm {
+.addAlbum-page .main-container #albumForm {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -634,22 +634,23 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   gap: 15px;
+  box-shadow: 0 4px 8px rgba(215, 215, 215, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.album-page .main-container #albumForm input {
+.addAlbum-page .main-container #albumForm input {
   width: 50%;
   border: 1px solid rgb(126, 126, 126);
   border-radius: 5px;
   padding: 5px;
   box-shadow: 0 4px 8px rgba(153, 153, 153, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.album-page .main-container #albumForm .add-tracks {
+.addAlbum-page .main-container #albumForm .add-tracks {
   display: flex;
   gap: 10px;
 }
-.album-page .main-container #albumForm .add-tracks input {
+.addAlbum-page .main-container #albumForm .add-tracks input {
   flex: 1;
 }
-.album-page .main-container #albumForm .add-tracks .add-track {
+.addAlbum-page .main-container #albumForm .add-tracks .add-track {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -659,11 +660,11 @@ body {
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.album-page .main-container #albumForm .add-tracks .add-track:hover {
+.addAlbum-page .main-container #albumForm .add-tracks .add-track:hover {
   background-color: #a1a1a1;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
-.album-page .main-container #albumForm .full-width {
+.addAlbum-page .main-container #albumForm .full-width {
   margin-top: 10px;
   cursor: pointer;
   padding: 5px 20px 5px 20px;
@@ -675,15 +676,59 @@ body {
   transition: background-color 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
-.album-page .main-container #albumForm .full-width:hover {
+.addAlbum-page .main-container #albumForm .full-width:hover {
   background-color: #f0f0f0;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }
-.album-page .main-container #albumForm #cover-input {
+.addAlbum-page .main-container #albumForm #cover-input {
   margin-top: 10px;
   cursor: pointer;
   padding: 5px 10px 5px 10px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+.addSession-page .main-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.addSession-page .main-container #studioSessionForm {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  gap: 15px;
+  box-shadow: 0 4px 8px rgba(215, 215, 215, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.addSession-page .main-container #studioSessionForm input {
+  width: 50%;
+  border: 1px solid rgb(126, 126, 126);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.addSession-page .main-container #studioSessionForm .full-width {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 5px 20px 5px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.addSession-page .main-container #studioSessionForm .full-width:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
 }/*# sourceMappingURL=main.css.map */
