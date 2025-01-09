@@ -179,6 +179,33 @@ app.get("/add-studio-session", ensureAuthenticated, (req, res) => {
 });
 
 
+app.get("/albums", ensureAuthenticated, async (req, res) => {
+  try {
+      const [albums, genres, artists] = await Promise.all([
+          Album.find({}).sort({ createdAt: -1 }),
+          Album.distinct('genre'),
+          Album.distinct('artist')
+      ]);
+
+      res.render("pages/albums.ejs", { 
+          user: req.user, 
+          albums: albums,
+          genres: genres,
+          artists: artists
+      });
+  } catch (error) {
+      console.error('Error fetching albums:', error);
+      res.render("pages/albums.ejs", { 
+          user: req.user, 
+          albums: [],
+          genres: [],
+          artists: [],
+          error: "Failed to load albums"
+      });
+  }
+});
+
+
 
 
 

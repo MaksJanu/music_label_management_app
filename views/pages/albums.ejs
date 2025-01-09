@@ -1,0 +1,64 @@
+<%- include('../partials/header') %>
+
+<body class="albums-page">
+    <div class="main-container">
+
+        <%- include('../partials/navbar') %>
+
+        <div class="albums-container">
+            <h1>All Albums</h1>
+            <button class="dashboard-album-button" onclick="location.href='/add-album'">Upload Album</button>
+
+            <div class="filter-container">
+                <select id="genreFilter">
+                    <option value="">All Genres</option>
+                    <% genres.forEach(genre => { %>
+                        <option value="<%= genre %>"><%= genre %></option>
+                    <% }) %>
+                </select>
+                
+                <select id="artistFilter">
+                    <option value="">All Artists</option>
+                    <% artists.forEach(artist => { %>
+                        <option value="<%= artist %>"><%= artist %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="albums">
+                <% albums.forEach(album => { %>
+                    <div class="album">
+                        <div class="album-inner">
+                            <div class="album-front">
+                                <img src="data:<%= album.image.contentType %>;base64,<%= album.image.data.toString('base64') %>" alt="<%= album.title %>">
+                            </div>
+                            <div class="album-back">
+                                <div class="tracklist">
+                                    <h3>Tracklist:</h3>
+                                    <ol>
+                                        <% album.tracks.forEach(track => { %>
+                                            <li><%= track %></li>
+                                        <% }) %>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <h3><%= album.title %></h3>
+                        <h4><%= album.genre %></h4>
+                        <p><%= album.artist %></p>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('../partials/footer') %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="/js/userMenu.js"></script>
+    <script src="/js/reload.js"></script>
+    <script src="/js/tracksDisplay.js"></script>
+    <script src="/js/albumFilters.js"></script>
+</body>
+</html>

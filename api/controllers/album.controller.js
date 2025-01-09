@@ -73,5 +73,25 @@ const deleteAlbum = async (req, res) => {
     }
 }
 
+const getDistinctGenresAndArtists = async (req, res) => {
+  try {
+      const genres = await Album.distinct('genre');
+      const artists = await Album.distinct('artist');
 
-export { getAllAlbums, getSpecificAlbums, postAlbum, deleteAlbum };
+      res.status(200).json({
+          success: true,
+          data: {
+              genres,
+              artists
+          }
+      });
+  } catch (error) {
+      res.status(500).json({
+          success: false,
+          message: "Error fetching filters",
+          error: error.message
+      });
+  }
+};
+
+export { getAllAlbums, getSpecificAlbums, postAlbum, deleteAlbum, getDistinctGenresAndArtists };

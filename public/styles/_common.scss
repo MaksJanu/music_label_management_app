@@ -17,6 +17,10 @@
         img {
             width: 180px;
             height: auto;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 
