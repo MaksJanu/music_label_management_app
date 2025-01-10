@@ -21,6 +21,11 @@ const userSchema = mongoose.Schema(
             required: true 
         },
 
+        profilePicture: { 
+            data: Buffer,
+            contentType: String,
+        },
+
         permissions: { 
             type: [String],
             default: [] 

@@ -9,7 +9,13 @@ const register = async (req, res) => {
         return res.status(400).json({ message: 'User with this email already exists' });
       }
   
-      const newUser = await User.create(req.body);
+      const newUser = await User.create({
+        ...req.body,
+        profilePicture: {
+          data: req.file.buffer,
+          contentType: req.file.mimetype
+        }
+      });
       req.login(newUser, (err) => {
         if (err) {
           return res.status(500).json({ message: err.message });
