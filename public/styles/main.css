@@ -592,8 +592,9 @@ body {
   text-align: center;
   background-color: #f9f9f9;
   border-radius: 10px;
-  padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 10px 40px 10px 40px;
 }
 .dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album img {
   width: 70px;
@@ -602,6 +603,47 @@ body {
 }
 .dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album h3, .dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album h4, .dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album p {
   margin: 5px 0;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album .delete-button {
+  border: 1px solid black;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 35px;
+  right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album .delete-button i {
+  font-size: 0.8rem;
+  text-align: center;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album .delete-button:hover {
+  background-color: rgba(255, 0, 0, 0.6705882353);
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album .update-button {
+  border: 1px solid white;
+  background-color: black;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  position: absolute;
+  top: 35px;
+  left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album .update-button i {
+  font-size: 0.8rem;
+  text-align: center;
+}
+.dashboard-page .main-container .dashboard-section .albums-display .albums-slider .album .update-button:hover {
+  background-color: #cecece;
 }
 .dashboard-page .main-container .dashboard-section .sessions-display {
   grid-column: 1/3;
@@ -973,4 +1015,82 @@ body {
   display: block;
   max-height: 100%;
   overflow-y: auto;
+}
+
+.update-album-page .main-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.update-album-page .main-container #updateAlbumForm {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  gap: 15px;
+  box-shadow: 0 4px 8px rgba(215, 215, 215, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.update-album-page .main-container #updateAlbumForm input {
+  width: 50%;
+  border: 1px solid rgb(126, 126, 126);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.update-album-page .main-container #updateAlbumForm .add-tracks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-album-page .main-container #updateAlbumForm .add-tracks-container .add-tracks {
+  display: flex;
+  gap: 10px;
+}
+.update-album-page .main-container #updateAlbumForm .add-tracks-container .add-tracks input {
+  flex: 1;
+}
+.update-album-page .main-container #updateAlbumForm .add-tracks-container .add-tracks .add-track, .update-album-page .main-container #updateAlbumForm .add-tracks-container .add-tracks .remove-track {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background: #000;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.update-album-page .main-container #updateAlbumForm .add-tracks-container .add-tracks .add-track:hover, .update-album-page .main-container #updateAlbumForm .add-tracks-container .add-tracks .remove-track:hover {
+  background-color: #a1a1a1;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+}
+.update-album-page .main-container #updateAlbumForm .full-width {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 5px 20px 5px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.update-album-page .main-container #updateAlbumForm .full-width:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+}
+.update-album-page .main-container #updateAlbumForm #cover-input {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }/*# sourceMappingURL=main.css.map */

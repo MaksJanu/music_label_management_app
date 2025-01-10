@@ -33,24 +33,24 @@ const userSchema = mongoose.Schema(
 
         genre: {
             type: String,  //Optional for artist
-            required: function() { return this.role === "artist" }
+            required: false
         }, 
 
         albums: [{
             type: mongoose.Schema.Types.ObjectId,  //Optional for artist added further
             ref: "Album",
-            required: function() { return this.role === "artist" }
+            required: false
         }],
 
         studioSessions: [{
             type: mongoose.Schema.Types.ObjectId,  //Optional for artist added further
             ref: "StudioSession",
-            required: function() { return this.role === "artist" }
+            required: false
         }],
 
         bio: { 
             type: String,  // Optional for artist
-            required: function() { return this.role === "artist" }
+            required: false
         },   
 
         createdAt: {

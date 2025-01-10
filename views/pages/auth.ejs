@@ -17,11 +17,12 @@
                 <form id="registerForm" method="post" action="/auth/register">
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>
-                    <select name="role" required>
+                    <select name="role" id="role" required>
                         <option value="" disabled selected>Select Role</option>
                         <option value="user">User</option>
                         <option value="artist">Artist</option>
                     </select>
+                    <input type="text" name="name" id="artistName" placeholder="Artist Name" style="display: none;">
                     <button class="full-width" type="submit">Register</button>
                 </form>
             <% } %>
@@ -30,5 +31,7 @@
     </div>
 
     <%- include('../partials/footer') %>
+
+    <script src="/js/showNameInput.js"></script>
 </body>
 </html>

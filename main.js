@@ -27,7 +27,7 @@ import studioSessionRoutes from "./api/routes/studio-session.route.js";
 import albumRoutes from "./api/routes/album.route.js";
 
 //Importing middleware
-import { ensureAuthenticated } from "./api/middleware/auth.js";
+import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js";
 
 
 //Creating express app
@@ -171,6 +171,19 @@ app.get("/dashboard", ensureAuthenticated, async (req, res) => {
 
 app.get("/add-album", ensureAuthenticated, (req, res) => {
   res.render("pages/add_album.ejs", { user: req.user });
+});
+
+
+app.get("/update-album/:id", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+  try {
+    const album = await Album.findById(req.params.id);
+    if (!album) {
+      return res.status(404).send("Album not found");
+    }
+    res.render("pages/update-album", { user: req.user, album });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
 
 

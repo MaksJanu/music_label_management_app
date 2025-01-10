@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tracksList = [];
     const addTrackButton = document.querySelector('.add-track');
-    const tracksContainer = document.querySelector('.add-tracks');
-    const form = document.getElementById('albumForm');
+    const tracksContainer = document.querySelector('.add-tracks-container');
+    const form = document.querySelector('#albumForm, #updateAlbumForm');
+
+    if (!form || !addTrackButton || !tracksContainer) {
+        console.error('Required elements not found');
+        return;
+    }
 
     // Add hidden input for tracks
     const tracksInput = document.createElement('input');
@@ -37,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         newInput.addEventListener('input', updateTracks);
 
         const removeButton = document.createElement('button');
-        removeButton.className = 'add-track';
+        removeButton.className = 'remove-track';
         removeButton.type = 'button';
         removeButton.textContent = '-';
         removeButton.onclick = () => {
@@ -47,6 +52,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         newTrackDiv.appendChild(newInput);
         newTrackDiv.appendChild(removeButton);
-        tracksContainer.parentNode.insertBefore(newTrackDiv, tracksContainer.nextSibling);
+        tracksContainer.appendChild(newTrackDiv);
+    });
+
+    // Add remove button functionality to existing tracks
+    document.querySelectorAll('.remove-track').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.target.parentElement.remove();
+            updateTracks();
+        });
     });
 });

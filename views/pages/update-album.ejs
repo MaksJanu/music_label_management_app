@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<body class="update-album-page">
+    <div class="main-container">
+
+        <%- include('../partials/navbar') %>
+
+        <h1>Update Album</h1>
+        <form id="updateAlbumForm" method="post" action="/api/album/update-album/<%= album._id %>" enctype="multipart/form-data">
+            <input type="text" name="title" value="<%= album.title %>" placeholder="Title" required>
+            <input type="text" name="genre" value="<%= album.genre %>" placeholder="Genre" required>
+            <input type="date" name="releaseDate" value="<%= album.releaseDate.toISOString().split('T')[0] %>" placeholder="Release date" required>
+            <div class="add-tracks-container">
+                <% if (album && Array.isArray(album.tracks)) { %>
+                    <% album.tracks.forEach((track, index) => { %>
+                        <div class="add-tracks">
+                            <input type="text" name="tracklist" value="<%= track %>" required>
+                            <% if (index === 0) { %>
+                                <button class="add-track" type="button">+</button>
+                            <% } else { %>
+                                <button class="remove-track" type="button">-</button>
+                            <% } %>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <div class="add-tracks">
+                        <input type="text" name="tracklist" placeholder="Track" required>
+                        <button class="add-track" type="button">+</button>
+                    </div>
+                <% } %>
+            </div>
+            <input id="cover-input" type="file" name="image" placeholder="Cover" accept="image/*">
+            <button class="full-width" type="submit">Update Album</button>
+        </form>
+    </div>
+
+    <%- include('../partials/footer') %>
+    
+    <script src="/js/userMenu.js"></script>
+    <script src="/js/reload.js"></script>
+    <script src="/js/getAlbumDetails.js"></script>
+    <script src="/js/addTracks.js"></script>
+</body>
+</html>

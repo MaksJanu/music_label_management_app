@@ -11,6 +11,44 @@ const getAllAlbums = async (req, res) => {
     }
 }
 
+const getAlbumById = async (req, res) => {
+  try {
+    const album = await Album.findById(req.params.id);
+    if (!album) {
+      return res.status(404).json({ message: "Album not found" });
+    }
+    res.status(200).json(album);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+const updateAlbum = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedData = {
+      title: req.body.title,
+      genre: req.body.genre,
+      releaseDate: req.body.releaseDate,
+      tracklist: req.body.tracklist,
+    };
+    if (req.file) {
+      updatedData.image = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
+    const album = await Album.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!album) {
+      return res.status(404).json({ message: "Album not found" });
+    }
+    res.redirect("/dashboard");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 const getSpecificAlbums = async (req, res) => {
     try {
@@ -94,4 +132,4 @@ const getDistinctGenresAndArtists = async (req, res) => {
   }
 };
 
-export { getAllAlbums, getSpecificAlbums, postAlbum, deleteAlbum, getDistinctGenresAndArtists };
+export { getAllAlbums, getSpecificAlbums, postAlbum, deleteAlbum, getDistinctGenresAndArtists, getAlbumById, updateAlbum };

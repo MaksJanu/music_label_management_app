@@ -23,6 +23,8 @@
                                     <h3><%= album.title %></h3>
                                     <h4><%= album.genre %></h4>
                                     <p><%= album.artist %></p>
+                                    <button class="delete-button" onclick="deleteAlbum('<%= album.title %>')"><i class="fa-solid fa-trash" style="color: #000000;"></i></button>
+                                    <button class="update-button" onclick="location.href='/update-album/<%= album._id %>'"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
                                 </div>
                             <% }) %>
                         </div>
@@ -73,5 +75,6 @@
     <script src="/js/userMenu.js"></script>
     <script src="/js/userChat.js"></script>
     <script src="/js/reload.js"></script>
+    <script src="/js/deleteAlbum.js"></script>
 </body>
 </html>
