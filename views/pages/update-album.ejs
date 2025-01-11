@@ -10,7 +10,7 @@
             <input type="text" name="title" value="<%= album.title %>" placeholder="Title" required>
             <input type="text" name="genre" value="<%= album.genre %>" placeholder="Genre" required>
             <input type="date" name="releaseDate" value="<%= album.releaseDate.toISOString().split('T')[0] %>" placeholder="Release date" required>
-            <div class="add-tracks-container">
+            <div class="add-tracks">
                 <% if (album && Array.isArray(album.tracks)) { %>
                     <% album.tracks.forEach((track, index) => { %>
                         <div class="add-tracks">
