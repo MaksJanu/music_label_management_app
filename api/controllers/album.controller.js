@@ -39,12 +39,14 @@ const updateAlbum = async (req, res) => {
         contentType: req.file.mimetype,
       };
     }
+    console.log('Updated data:', updatedData);
     const album = await Album.findByIdAndUpdate(id, updatedData, { new: true });
     if (!album) {
       return res.status(404).json({ message: "Album not found" });
     }
-    res.redirect("/dashboard");
+    res.status(200).json({ message: "Album updated successfully" });
   } catch (error) {
+    console.error('Error updating album:', error);
     res.status(500).json({ message: error.message });
   }
 };

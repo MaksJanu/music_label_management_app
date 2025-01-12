@@ -56,7 +56,7 @@ const userSchema = mongoose.Schema(
         bio: { 
             type: String,  // Optional for artist
             required: false
-        },   
+        },
 
         createdAt: {
             type: Date,

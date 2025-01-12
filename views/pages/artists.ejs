@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<body class="artists-page">
+    <div class="main-container">
+
+        <%- include('../partials/navbar') %>
+
+            <div class="artists-container">
+                <h1>All Artists</h1>
+                <div class="artists">
+                    <% artists.forEach(artist => { %>
+                        <div class="artist">
+                            <img src="data:<%= artist.profilePicture.contentType %>;base64,<%= artist.profilePicture.data.toString('base64') %>" alt="<%= artist.name %>">
+                            <div class="display">
+                                <h3><%= artist.name %></h3>
+                                <button class="subscribe-button">Subscribe</button>
+                            </div>
+                            <p><strong>Bio:</strong><%= artist.bio %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="/js/userMenu.js"></script>
+    <script src="/js/reload.js"></script>
+
+</body>
+</html>

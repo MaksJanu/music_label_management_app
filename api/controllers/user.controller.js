@@ -1,9 +1,20 @@
 import User from "../models/user.model.js";
 
-
 const getAllUsers = async (req, res) => {
     try {
       const users = await User.find({})
+      .populate("albums")
+      .populate("studioSessions");
+      
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+}
+
+const getAllArtists = async (req, res) => {
+    try {
+      const users = await User.find({role: "artist"})
       .populate("albums")
       .populate("studioSessions");
       
@@ -30,7 +41,10 @@ const getSpecificUser = async (req, res) => {
 }
 
 
-export { getAllUsers, getSpecificUser };
+
+
+
+export { getAllUsers, getSpecificUser, getAllArtists };
 
 
 

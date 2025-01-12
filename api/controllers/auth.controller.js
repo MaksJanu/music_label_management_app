@@ -2,31 +2,36 @@ import User from "../models/user.model.js";
 
 
 const register = async (req, res) => {
-    try {
-      const { email } = req.body;
+  try {
+      const { email, role } = req.body;
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        return res.status(400).json({ message: 'User with this email already exists' });
+          return res.status(400).json({ message: 'User with this email already exists' });
       }
-  
-      const newUser = await User.create({
-        ...req.body,
-        profilePicture: {
-          data: req.file.buffer,
-          contentType: req.file.mimetype
-        }
+
+      const newUser = new User({
+          ...req.body,
       });
+
+      if (role === 'artist' && req.file) {
+          newUser.profilePicture = {
+              data: req.file.buffer,
+              contentType: req.file.mimetype
+          };
+      }
+
+      await newUser.save();
+
       req.login(newUser, (err) => {
-        if (err) {
-          return res.status(500).json({ message: err.message });
-        }
-        // return res.status(201).json(newUser);
-        return res.redirect('/main');
+          if (err) {
+              return res.status(500).json({ message: err.message });
+          }
+          return res.redirect('/main');
       });
-    } catch (error) {
+  } catch (error) {
       res.status(500).json({ message: error.message });
-    }
-}
+  }
+};
 
 
 const login = (req, res) => {

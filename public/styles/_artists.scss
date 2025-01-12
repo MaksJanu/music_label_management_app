@@ -1,0 +1,69 @@
+
+.artists-page {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+
+        .artists-container {
+            margin: 130px 20px 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 130px auto 0;
+            padding: 0 40px;
+            width: 100%;
+            max-width: 1200px;
+
+            .artists {
+                margin: 0;
+                padding: 20px;
+                background-color: #f0f0f0;
+                border-radius: 10px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                max-height: 80vh;
+                overflow-y: auto;
+                width: 80%;
+                margin-bottom: 30px;
+
+                .artist {
+                    img {
+                        height: 80%;
+                        width: 100%;
+                        border-radius: 10px;
+                        object-fit: cover;
+                    };
+
+                    .display {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        
+                        .subscribe-button {
+                            cursor: pointer;
+                            padding: 5px 20px 5px 20px;
+                            font-size: 1.1rem;
+                            font-weight: 500;
+                            color: white;
+                            background-color: black;
+                            border: 1px solid black;
+                            border-radius: 10px;
+                            transition: background-color 0.3s;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+                            height: 50%;
+            
+                            &:hover {
+                                background-color: #474747;
+                                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.38);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

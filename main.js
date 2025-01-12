@@ -219,7 +219,14 @@ app.get("/albums", ensureAuthenticated, async (req, res) => {
 });
 
 
-
+app.get("/artists", async (req, res) => {
+  try {
+    const artists = await User.find({ role: 'artist' });
+    res.render("pages/artists.ejs", { user: req.user, artists });
+  } catch (error) {
+    res.render("pages/artists.ejs", { user: req.user, artists: [], error: "Failed to load artists" });
+  }
+})
 
 
 

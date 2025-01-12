@@ -15,7 +15,7 @@ router.get("/:id", ensureAuthenticated, ensureArtistRole, getAlbumById);
 router.post("/", ensureAuthenticated, ensureArtistRole, upload.single('image'), postAlbum);
 
 //Put methods
-router.post("/update-album/:id", ensureAuthenticated, ensureArtistRole, upload.single('image'), updateAlbum);
+router.put("/update-album/:id", ensureAuthenticated, ensureArtistRole, upload.single('image'), updateAlbum);
 
 //Delete methods
 router.delete("/:albumName", ensureAuthenticated, ensureArtistRole, deleteAlbum);

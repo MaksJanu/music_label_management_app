@@ -2,7 +2,6 @@ import User from "../models/user.model.js";
 import StudioSession from "../models/studio-session.model.js";
 
 
-
 const getAllStudioSessions = async (req, res) => {
     try {
       const searchedStudioSessions = await StudioSession.find({})
