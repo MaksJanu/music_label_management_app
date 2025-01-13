@@ -14,6 +14,10 @@
 Icon
 
 
+# SSL certificate and key files
+plik_klucz
+plik_certyfikat
+
 # Thumbnails
 ._*
 
