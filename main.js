@@ -5,10 +5,12 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 import bodyParser from "body-parser";
-import { Server } from 'socket.io';
-import { createServer } from 'http';
+import { Server as SocketIo } from 'socket.io';
 import _ from 'lodash';
 import moment from 'moment';
+import https from 'https';
+import fs from 'fs';
+
 
 //Importing models
 import User from "./api/models/user.model.js";
@@ -232,9 +234,18 @@ app.get("/artists", async (req, res) => {
 
 
 
-// Create HTTP server and Socket.IO server
-const server = createServer(app);
-const io = new Server(server);
+// SSL Certificates
+const options = {
+  key: fs.readFileSync('plik_klucz'),
+  cert: fs.readFileSync('plik_certyfikat')
+};
+// Create HTTPS server
+const server = https.createServer(options, app);
+
+
+
+// Initialize WebSocket server
+const io = new SocketIo(server);
 
 io.on('connection', (socket) => {
   console.log('User connected');
@@ -250,22 +261,11 @@ io.on('connection', (socket) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Connected!");
     server.listen(PORT, () => {
-      console.log(`Server started at port ${PORT}`);
+      console.log(`HTTPS server started at port ${PORT}`);
     });
   })
   .catch((error) => {
