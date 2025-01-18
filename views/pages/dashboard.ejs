@@ -42,10 +42,11 @@
                         <div class="sessions-slider">
                             <% sessions.forEach(session => { %>
                                 <div class="session">
-                                    <i class="fa-solid fa-microphone" style="color: #000000;"></i>
-                                    <h3><%= session.title %></h3>
-                                    <h4><%= session.formattedDate %></h4>
-                                    <p><%= session.details %></p>
+                                  <i class="fa-solid fa-microphone" style="color: #000000;"></i>
+                                  <button class="join-room" data-room-id="<%= session._id %>" data-session-date="<%= session.formattedDate %>">Join Chat</button>
+                                  <h3><%= session.title %></h3>
+                                  <h4><%= session.formattedDate %></h4>
+                                  <p><%= session.details %></p>
                                 </div>
                             <% }) %>
                         </div>
@@ -56,13 +57,15 @@
 
 
                 <div class="chat">
-                    <div class="chat-messages"></div>
+                    <div class="chat-messages">
+                      <h2 id="welcome-message">Welcome to Chat!</h2>
+                    </div>
                     <form id="chat-form" data-user-role="<%= user.role %>">
-                        <input type="text" id="message-input" placeholder="Type a message...">
-                        <button type="submit">Send</button>
+                      <input type="text" id="message-input" placeholder="Type a message...">
+                      <button type="submit">Send</button>
                     </form>
-                </div>
-
+                    <button id="leave-room">Leave Room</button>
+                  </div>
             </div>
         </div>
     </div>

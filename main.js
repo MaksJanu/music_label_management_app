@@ -27,6 +27,7 @@ import authRoutes from "./api/routes/auth.route.js";
 import userRoutes from "./api/routes/user.route.js";
 import studioSessionRoutes from "./api/routes/studio-session.route.js";
 import albumRoutes from "./api/routes/album.route.js";
+import searchRoutes from "./api/routes/search.route.js";
 
 //Importing middleware
 import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js";
@@ -117,6 +118,8 @@ app.use("/api/album", albumRoutes)
 app.use("/api/studio-session", studioSessionRoutes)
 
 
+//Search routes
+app.use("/api/search", searchRoutes);
 
 
 // Rendering for login and register
@@ -231,6 +234,23 @@ app.get("/artists", async (req, res) => {
 })
 
 
+app.get("/studio-sessions", async (req, res) => {
+  try {
+    const [sessions, artists] = await Promise.all([
+      StudioSession.find({}).sort({ createdAt: -1 }),
+      StudioSession.find({}).distinct('artist')
+    ]);
+
+    const formattedSessions = sessions.map(session => ({
+      ...session._doc,
+      formattedDate: moment(session.date).format('YYYY-MM-DD HH:mm')
+    }));
+    res.render("pages/studio_sessions.ejs", { user: req.user, sessions: formattedSessions, artists });
+  } catch (error) {
+    res.render("pages/studio_sessions.ejs", { user: req.user, sessions: [], artists: [], error: "Failed to load studio sessions" });
+  }
+});
+
 
 
 
@@ -250,8 +270,18 @@ const io = new SocketIo(server);
 io.on('connection', (socket) => {
   console.log('User connected');
 
-  socket.on('chatMessage', (data) => {
-    io.emit('message', data);
+  socket.on('joinRoom', ({ roomId, user }) => {
+    socket.join(roomId);
+    console.log(`${user} joined room ${roomId}`);
+  });
+
+  socket.on('leaveRoom', ({ roomId, user }) => {
+    socket.leave(roomId);
+    console.log(`${user} left room ${roomId}`);
+  });
+
+  socket.on('chatMessage', ({ roomId, data }) => {
+    io.to(roomId).emit('message', data);
   });
 
   socket.on('disconnect', () => {

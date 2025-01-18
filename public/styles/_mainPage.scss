@@ -4,9 +4,10 @@
     /* main.ejs styling start */
 
     .background {
-        margin-top: 50px;
+        position: relative; 
+        z-index: 1;
         padding: 20px;
-        height: 380px;
+        height: 450px;
         width: auto;
         background: url('https://media3.giphy.com/media/mqZT98rFc1VMxoxWxp/200.gif?cid=6c09b9529dhwkdz6l2szxgpc283g27v1x70agdmregt5mdyd&ep=v1_gifs_search&rid=200.gif&ct=g') no-repeat center center;
         background-size: cover;
