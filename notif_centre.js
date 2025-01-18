@@ -99,6 +99,18 @@ async function reconnect() {
     }
 }
 
+
+// Send email to all users with user role
+async function sendEmailsToAllUsers(eventType, data) {
+    try {
+        const users = await User.find({ role: 'user' });
+        await Promise.all(users.forEach(user => sendEmail(user.email, eventType, data)));
+    } catch (error) {
+        console.error('Failed to send emails to all users:', error);
+    }
+}
+
+
 // MQTT client initialization
 function initializeMQTT() {
     const client = mqtt.connect("mqtt://localhost:1883");
@@ -119,10 +131,7 @@ function initializeMQTT() {
 
         if (eventType === 'new-album' || eventType === 'new-session') {
             try {
-                const users = await User.find({ role: 'user' });
-                for (const user of users) {
-                    await sendEmail(user.email, eventType, data);
-                }
+                await sendEmailsToAllUsers(eventType, data);
             } catch (error) {
                 console.error('Error processing message:', error);
             }
