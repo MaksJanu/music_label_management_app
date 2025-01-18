@@ -65,6 +65,3 @@ TrackTrail to aplikacja do zarządzania wytwórnią muzyczną, która umożliwia
 
 - [Twoje Imię](https://github.com/your-profile)
 
-## Licencja
-
-Ten projekt jest licencjonowany na warunkach licencji MIT.
