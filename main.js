@@ -10,6 +10,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import https from 'https';
 import fs from 'fs';
+import mqtt from 'mqtt';
 
 
 //Importing models
@@ -36,6 +37,7 @@ import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js"
 //Creating express app
 const app = express();
 const PORT = process.env.PORT;
+
 
 
 //Middleware do parsowania danych
@@ -99,7 +101,6 @@ passport.deserializeUser(async (id, done) => {
     done(error);
   }
 });
-
 
 
 //Auth routes
@@ -290,8 +291,11 @@ io.on('connection', (socket) => {
 });
 
 
-
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(process.env.MONGODB_URL, {  
+  serverSelectionTimeoutMS: 30000,
+  socketTimeoutMS: 45000,
+  connectTimeoutMS: 45000
+  })
   .then(() => {
     console.log("Connected!");
     server.listen(PORT, () => {

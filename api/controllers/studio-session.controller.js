@@ -1,5 +1,8 @@
 import User from "../models/user.model.js";
 import StudioSession from "../models/studio-session.model.js";
+import mqtt from 'mqtt';
+
+const client = mqtt.connect("mqtt://localhost:1883");
 
 
 const getAllStudioSessions = async (req, res) => {
@@ -44,7 +47,9 @@ const postStudioSession = async (req, res) => {
     
       searchedArtist.studioSessions.push(newSession._id);
       await searchedArtist.save();
-    
+
+      client.publish(`artist/${searchedArtist._id}/new-session`, JSON.stringify(newSession));
+
       res.status(201).json(newSession);
     } catch (error) {
       res.status(500).json({ message: error.message })

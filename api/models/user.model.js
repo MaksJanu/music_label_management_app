@@ -26,6 +26,11 @@ const userSchema = mongoose.Schema(
             contentType: String,
         },
 
+        subscriptions: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+
         permissions: { 
             type: [String],
             default: [] 

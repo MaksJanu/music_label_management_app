@@ -13,7 +13,7 @@
                             <img src="data:<%= artist.profilePicture.contentType %>;base64,<%= artist.profilePicture.data.toString('base64') %>" alt="<%= artist.name %>">
                             <div class="display">
                                 <h3><%= artist.name %></h3>
-                                <button class="subscribe-button">Subscribe</button>
+                                <button class="subscribe-button" data-artist-id="<%= artist._id %>">Subscribe</button>
                             </div>
                             <p><strong>Bio:</strong><%= artist.bio %></p>
                         </div>

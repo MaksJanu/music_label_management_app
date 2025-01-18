@@ -1,6 +1,8 @@
 import Album from "../models/album.model.js";
 import User from "../models/user.model.js";
+import mqtt from 'mqtt';
 
+const client = mqtt.connect("mqtt://localhost:1883");
 
 const getAllAlbums = async (req, res) => {
     try {
@@ -92,6 +94,8 @@ const postAlbum = async (req, res) => {
 
         searchedArtist.albums.push(newAlbum._id);
         await searchedArtist.save();
+
+        client.publish(`artist/${searchedArtist._id}/new-album`, JSON.stringify(newAlbum));
 
         res.status(201).json(newAlbum);
     } catch (error) {
