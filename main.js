@@ -252,7 +252,9 @@ app.get("/studio-sessions", async (req, res) => {
   }
 });
 
-
+app.get("/auth/change-credentials", ensureAuthenticated, (req, res) => {
+  res.render("pages/change_credentials", { user: req.user });
+});
 
 
 // SSL Certificates

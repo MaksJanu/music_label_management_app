@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-
+import bcrypt from 'bcrypt';
 
 const register = async (req, res) => {
   try {
@@ -33,11 +33,9 @@ const register = async (req, res) => {
   }
 };
 
-
 const login = (req, res) => {
   res.redirect('/main');
-}
-
+};
 
 const logout = (req, res) => {
   req.logout((err) => {
@@ -52,21 +50,67 @@ const logout = (req, res) => {
       res.redirect('/');
     });
   });
-}
+};
 
 
-const changeCredentials = async (req, res) => {
+
+const updateUser = async (req, res) => {
     try {
-      const { mail } = req.params
-      const userToUpdate = await User.findOneAndUpdate({ email: mail }, req.body, { new: true });
-      if (!userToUpdate) {
-        return res.status(404).json({ message: "User with given mail doesn't exist!" });
-      }
-      res.status(200).json(userToUpdate);
+        const { id } = req.params;
+        const { currentPassword, newPassword, confirmPassword, name, email } = req.body;
+
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        let passwordChanged = false;
+
+        if (newPassword && newPassword.length > 0) {
+            if (!currentPassword) {
+                return res.status(400).json({ message: 'Current password is required to change password' });
+            }
+
+            const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+            if (!isPasswordValid) {
+                return res.status(400).json({ message: 'Current password is incorrect' });
+            }
+
+            if (newPassword !== confirmPassword) {
+                return res.status(400).json({ message: 'New passwords do not match' });
+            }
+
+            user.password = await bcrypt.hash(newPassword, 10);
+            passwordChanged = true;
+        }
+
+        user.name = name;
+        user.email = email;
+
+        if (req.file) {
+            user.profilePicture = {
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            };
+        }
+
+        await user.save();
+
+        if (passwordChanged) {
+            // Re-login user after password change
+            req.login(user, (err) => {
+                if (err) {
+                    return res.status(500).json({ message: err.message });
+                }
+                return res.status(200).json({ message: 'User updated successfully' });
+            });
+        } else {
+            res.status(200).json({ message: 'User updated successfully' });
+        }
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        console.error('Update error:', error);
+        res.status(500).json({ message: error.message });
     }
-}
+};
 
-
-export { register, login, logout, changeCredentials };
+export { register, login, logout, updateUser };

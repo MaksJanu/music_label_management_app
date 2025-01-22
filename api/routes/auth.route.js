@@ -1,7 +1,8 @@
 import express from "express";
 import passport from "passport";
-import { register, login, logout, changeCredentials }  from "../controllers/auth.controller.js"
+import { register, login, logout, updateUser }  from "../controllers/auth.controller.js"
 import upload from '../middleware/uploadFile.js';
+import { ensureAuthenticated } from '../middleware/auth.js';
 
 const router = express.Router()
 
@@ -11,7 +12,8 @@ router.post("/login", passport.authenticate('local'), login)
 router.get("/logout", logout)
 
 //Put methods
-router.put("/change-credentials/:mail", changeCredentials)
+//Put methods
+router.put('/update-user/:id', ensureAuthenticated, upload.single('image'), updateUser);
 
 
 export default router;
