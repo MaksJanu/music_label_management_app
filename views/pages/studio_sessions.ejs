@@ -9,7 +9,7 @@
             <h1>All Studio Sessions</h1>
             <button class="studio-button" onclick="location.href='/add-studio-session'">Plan Session</button>
 
-            <div class="filter-container"> 
+            <div class="filter-container">
                 <select id="artistFilter">
                     <option value="">All Artists</option>
                     <% artists.forEach(artist => { %>
@@ -54,5 +54,6 @@
     <script src="/js/reload.js"></script>
     <script src="/js/sessionsFilter.js"></script>
     <script src="/js/userChat.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

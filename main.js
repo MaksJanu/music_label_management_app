@@ -269,6 +269,7 @@ const server = https.createServer(options, app);
 
 // Initialize WebSocket server
 const io = new SocketIo(server);
+let onlineUsers = [];
 
 io.on('connection', (socket) => {
   console.log('User connected');
@@ -287,8 +288,22 @@ io.on('connection', (socket) => {
     io.to(roomId).emit('message', data);
   });
 
+  // Dodaj użytkownika do listy online
+  socket.on('userLoggedIn', (user) => {
+    if (!onlineUsers.includes(user.email)) {
+      onlineUsers.push(user.email);
+      socket.email = user.email; // Przechowaj email w obiekcie socket
+    }
+    io.emit('updateOnlineUsers', onlineUsers.length);
+  });
+
+  // Usuń użytkownika z listy online po rozłączeniu
   socket.on('disconnect', () => {
     console.log('User disconnected');
+    if (socket.email) {
+      onlineUsers = onlineUsers.filter(email => email !== socket.email);
+      io.emit('updateOnlineUsers', onlineUsers.length);
+    }
   });
 });
 

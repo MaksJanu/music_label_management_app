@@ -44,6 +44,10 @@
                                 <div class="session">
                                   <i class="fa-solid fa-microphone" style="color: #000000;"></i>
                                   <button class="join-room" data-room-id="<%= session._id %>" data-session-date="<%= session.formattedDate %>">Join Chat</button>
+                                  <div class = "buttons">
+                                    <button class="session-update-button" onclick="location.href='/update-session/<%= session._id %>'"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
+                                    <button class="session-delete-button" onclick="deleteSession('<%= session._id %>')"><i class="fa-solid fa-trash" style="color: #000000;"></i></button>
+                                  </div>
                                   <h3><%= session.title %></h3>
                                   <h4><%= session.formattedDate %></h4>
                                   <p><%= session.details %></p>
@@ -78,5 +82,7 @@
     <script src="/js/userChat.js"></script>
     <script src="/js/reload.js"></script>
     <script src="/js/deleteAlbum.js"></script>
+    <script src="/js/deleteSession.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

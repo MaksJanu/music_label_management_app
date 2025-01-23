@@ -104,7 +104,11 @@ async function reconnect() {
 async function sendEmailsToAllUsers(eventType, data) {
     try {
         const users = await User.find({ role: 'user' });
-        await Promise.all(users.forEach(user => sendEmail(user.email, eventType, data)));
+        if (Array.isArray(users) && users.length > 0) {
+            await Promise.all(users.map(user => sendEmail(user.email, eventType, data)));
+        } else {
+            console.error('No users found with role "user"');
+        }
     } catch (error) {
         console.error('Failed to send emails to all users:', error);
     }

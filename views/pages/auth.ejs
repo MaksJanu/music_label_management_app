@@ -13,26 +13,26 @@
                     <input type="password" name="password" placeholder="Password" required>
                     <button class="full-width" type="submit">Log In</button>
                 </form>
-                <% } else if (locals.type === 'register') { %>
-                    <form id="registerForm" method="post" action="/auth/register" enctype="multipart/form-data">
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="password" placeholder="Password" required>
-                        <select name="role" id="role" required>
-                            <option value="" disabled selected>Select Role</option>
-                            <option value="user">User</option>
-                            <option value="artist">Artist</option>
-                        </select>
-                        <input type="text" name="name" id="artistName" placeholder="Artist Name" style="visibility: hidden; position: absolute;">
-                        <input id="profilePic" type="file" name="image" placeholder="Profile Picture" accept="image/*" style="visibility: hidden; position: absolute;">
-                        <button class="full-width" type="submit">Register</button>
-                    </form>
-                <% } %>
+            <% } else if (locals.type === 'register') { %>
+                <form id="registerForm" method="post" action="/auth/register" enctype="multipart/form-data">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <select name="role" id="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="user">User</option>
+                        <option value="artist">Artist</option>
+                    </select>
+                    <input type="text" name="name" id="artistName" placeholder="Artist Name">
+                    <input id="profilePic" type="file" name="image" placeholder="Profile Picture" accept="image/*">
+                    <button class="full-width" type="submit">Register</button>
+                </form>
+            <% } %>
         </div>
-
     </div>
 
     <%- include('../partials/footer') %>
 
     <script src="/js/showNameInput.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
