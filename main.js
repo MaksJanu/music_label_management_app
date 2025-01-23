@@ -10,7 +10,6 @@ import _ from 'lodash';
 import moment from 'moment';
 import https from 'https';
 import fs from 'fs';
-import mqtt from 'mqtt';
 
 
 //Importing models
@@ -32,6 +31,7 @@ import searchRoutes from "./api/routes/search.route.js";
 
 //Importing middleware
 import { ensureAuthenticated, ensureArtistRole } from "./api/middleware/auth.js";
+import { loggerMiddleware } from "./api/middleware/logger.js";
 
 
 //Creating express app
@@ -49,6 +49,7 @@ app.use(bodyParser.urlencoded( { extended: true }))
 app.use(express.static("public"));
 app.set('views', './views');
 app.set('view engine', 'ejs');
+app.use(loggerMiddleware);
 
 
 // Konfiguracja sesji logowania podpisana kluczem
