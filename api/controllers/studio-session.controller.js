@@ -57,6 +57,29 @@ const postStudioSession = async (req, res) => {
 }
 
 
+const updateStudioSession = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { date, duration, details } = req.body;
+
+    const session = await StudioSession.findById(id);
+    if (!session) {
+      return res.status(404).json({ message: "Session not found" });
+    }
+
+    session.date = date;
+    session.duration = duration;
+    session.details = details;
+
+    await session.save();
+
+    res.status(200).json({ message: "Session updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 const deleteStudioSession = async (req, res) => {
     try {
       const { id } = req.params
@@ -71,4 +94,4 @@ const deleteStudioSession = async (req, res) => {
 }
 
 
-export { getAllStudioSessions, getSpecificStudioSessions, postStudioSession, deleteStudioSession };
+export { getAllStudioSessions, getSpecificStudioSessions, postStudioSession, deleteStudioSession, updateStudioSession };

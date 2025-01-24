@@ -51,7 +51,6 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(loggerMiddleware);
 
-
 // Konfiguracja sesji logowania podpisana kluczem
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -102,7 +101,6 @@ passport.deserializeUser(async (id, done) => {
     done(error);
   }
 });
-
 
 //Auth routes
 app.use("/auth", authRoutes)
@@ -257,6 +255,18 @@ app.get("/auth/change-credentials", ensureAuthenticated, (req, res) => {
   res.render("pages/change_credentials", { user: req.user });
 });
 
+app.get("/update-session/:id", ensureAuthenticated, ensureArtistRole, async (req, res) => {
+  try {
+    const session = await StudioSession.findById(req.params.id);
+    if (!session) {
+      return res.status(404).send("Session not found");
+    }
+    res.render("pages/update-session", { user: req.user, session });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 
 // SSL Certificates
 const options = {
@@ -296,6 +306,15 @@ io.on('connection', (socket) => {
       socket.email = user.email; // Przechowaj email w obiekcie socket
     }
     io.emit('updateOnlineUsers', onlineUsers.length);
+  });
+
+  // Emit notification when a new album or session is added
+  socket.on('newAlbum', (data) => {
+    io.emit('notification', { type: 'album', data });
+  });
+
+  socket.on('newSession', (data) => {
+    io.emit('notification', { type: 'session', data });
   });
 
   // Usuń użytkownika z listy online po rozłączeniu
