@@ -1,67 +1,94 @@
 # TrackTrail - Music Label Management App
 
-## Opis projektu
+## Project Description
 
-TrackTrail to aplikacja do zarządzania wytwórnią muzyczną, która umożliwia artystom i użytkownikom zarządzanie albumami, sesjami studyjnymi oraz interakcję poprzez czat. Aplikacja oferuje różne funkcje w zależności od roli użytkownika (artysta lub użytkownik).
+TrackTrail is a music label management application that enables artists and users to manage albums, studio sessions, and interact through chat. The application offers various features depending on the user's role (artist or user).
 
-## Funkcje
+## Features
 
-### Dla artystów:
-- **Zarządzanie profilem**: Edycja informacji o profilu, w tym zdjęcia profilowego i biografii.
-- **Tworzenie albumów**: Dodawanie nowych albumów, w tym tytułu, gatunku, daty wydania oraz listy utworów.
-- **Edycja albumów**: Aktualizacja istniejących albumów.
-- **Usuwanie albumów**: Usuwanie albumów z bazy danych.
-- **Planowanie sesji studyjnych**: Tworzenie nowych sesji studyjnych, w tym daty, szczegółów i czasu trwania.
+### For Artists:
+- **Profile Management**: Edit profile information, including profile picture and biography.
+- **Album Creation**: Add new albums, including title, genre, release date, and track list.
+- **Album Editing**: Update existing albums.
+- **Album Deletion**: Remove albums from the database.
+- **Studio Session Planning**: Create new studio sessions, including date, details, and duration.
 
-### Dla użytkowników:
-- **Przeglądanie albumów**: Przeglądanie dostępnych albumów i ich szczegółów.
-- **Przeglądanie artystów**: Przeglądanie profili artystów.
-- **Subskrypcje**: Subskrybowanie artystów w celu otrzymywania powiadomień o nowych albumach i sesjach studyjnych.
-- **Czat**: Udział w czatach podczas sesji studyjnych.
+### For Users:
+- **Album Browsing**: Browse available albums and their details.
+- **Artist Browsing**: Browse artist profiles.
+- **Subscriptions**: Subscribe to artists to receive notifications about new albums and studio sessions.
+- **Chat**: Participate in chats during studio sessions.
 
-## Struktura projektu
-.env .gitignore api/ controllers/ album.controller.js auth.controller.js search.controller.js studio-session.controller.js user.controller.js middleware/ auth.js uploadFile.js models/ album.model.js studio-session.model.js user.model.js routes/ album.route.js auth.route.js search.route.js studio-session.route.js ... main.js notif_centre.js package.json plik_certyfikat plik_klucz public/ images/ js/ styles/ README.md run.sh views/ pages/ partials/ start.ejs
+### General Features:
+- **User Authorization**: Registration and login using Passport.js.
+- **Real-time Notifications**: Send notifications via MQTT and emails via Nodemailer for users with the user role.
+- **Secure Communication**: HTTPS server with SSL/TLS certificates.
 
-
-
-## Technologie
+## Technologies
 
 - **Backend**: Node.js, Express.js, MongoDB, Mongoose
 - **Frontend**: EJS, CSS, JavaScript
-- **Autoryzacja**: Passport.js
-- **Powiadomienia**: MQTT, Nodemailer
+- **Authorization**: Passport.js
+- **Notifications**: MQTT, Nodemailer
+- **Chat**: Socket.io
 
-## Instalacja
+## Project Structure (approximate)
 
-1. Sklonuj repozytorium:
-    ```sh
-    git clone https://github.com/your-repo/tracktrail.git
-    ```
-2. Zainstaluj zależności:
-    ```sh
-    npm install
-    ```
-3. Skonfiguruj plik `.env`:
-    ```env
-    MONGODB_URL=your_mongodb_url
-    PORT=your_port
-    SESSION_SECRET=your_session_secret
-    NOT_EMAIL=your_notification_email
-    NOT_PASSWORD=your_notification_email_password
-    ```
-4. Uruchom aplikację:
-    ```sh
-    npm start
-    ```
+```
+music_label_management_app/
+├── api/
+│   ├── controllers/          # Application logic
+│   ├── middleware/           # Middleware (e.g., authorization)
+│   ├── models/               # Mongoose models
+│   └── routes/               # API routes
+├── public/                   # Static files (CSS, JS, images)
+├── views/                    # EJS views
+├── main.js                   # Main server file
+├── notif_centre.js           # Notification center
+├── run.sh                    # Script to run the application
+├── package.json              # Node.js configuration
+└── README.md                 # Project documentation
+```
 
-## Użycie
+## Screenshots
 
-1. Zarejestruj się jako artysta lub użytkownik.
-2. Zaloguj się do aplikacji.
-3. Artysta może dodawać, edytować i usuwać albumy oraz planować sesje studyjne.
-4. Użytkownik może przeglądać albumy, subskrybować artystów i uczestniczyć w czatach.
 
-## Autorzy
+### Registration Page
+![Registration Page](public/images/registerPage.png)
+Registration form for new users, allowing role selection (artist or user).
 
-- [Twoje Imię](https://github.com/your-profile)
+### Login Page
+![Login Page](public/images/loginPage.png)
+Login panel for existing users.
 
+### Main Page
+![Main Page](public/images/mainPage.png)
+The main page of the application, where users can browse the latest albums and studio sessions.
+
+### Dashboard
+![Dashboard](public/images/dashboard.png)
+Personalized dashboard with access to features dependent on the user's role.
+
+### Album Upload Page
+![Album Upload](public/images/uploadAlbumPage.png)
+Form allowing artists to add new albums.
+
+### Studio Session Upload Page
+![Session Planning](public/images/uploadStudio.png)
+Form allowing artists to plan studio sessions.
+
+### Artists List
+![Artists List](public/images/artistsPage.png)
+Page with artist profiles that users can browse.
+
+### Albums List
+![Albums List](public/images/albumsPage.png)
+View of all available albums with the ability to browse details.
+
+### Studio Sessions List
+![Studio Sessions List](public/images/sessionsPage.png)
+View of scheduled studio sessions, available for users and artists.
+
+## Authors
+
+- **MaksJanu** - [GitHub](https://github.com/MaksJanu)

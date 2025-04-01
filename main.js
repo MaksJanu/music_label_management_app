@@ -36,7 +36,7 @@ import { loggerMiddleware } from "./api/middleware/logger.js";
 
 //Creating express app
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3443;
 
 
 
