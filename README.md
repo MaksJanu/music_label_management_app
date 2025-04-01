@@ -27,7 +27,7 @@ TrackTrail is a music label management application that enables artists and user
 ## Technologies
 
 - **Backend**: Node.js, Express.js, MongoDB, Mongoose
-- **Frontend**: EJS, CSS, JavaScript
+- **Frontend**: EJS, SCSS, JavaScript
 - **Authorization**: Passport.js
 - **Notifications**: MQTT, Nodemailer
 - **Chat**: Socket.io
