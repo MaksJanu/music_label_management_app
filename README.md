@@ -1,30 +1,30 @@
 # TrackTrail - Music Label Management App
 
-## Project Description
+## 📄Project Description
 
 TrackTrail is a music label management application that enables artists and users to manage albums, studio sessions, and interact through chat. The application offers various features depending on the user's role (artist or user).
 
 ## Features
 
-### For Artists:
+### 🧑‍🎨 For Artists:
 - **Profile Management**: Edit profile information, including profile picture and biography.
 - **Album Creation**: Add new albums, including title, genre, release date, and track list.
 - **Album Editing**: Update existing albums.
 - **Album Deletion**: Remove albums from the database.
 - **Studio Session Planning**: Create new studio sessions, including date, details, and duration.
 
-### For Users:
+### 👤 For Users:
 - **Album Browsing**: Browse available albums and their details.
 - **Artist Browsing**: Browse artist profiles.
 - **Subscriptions**: Subscribe to artists to receive notifications about new albums and studio sessions.
 - **Chat**: Participate in chats during studio sessions.
 
-### General Features:
+### ☁️ General Features:
 - **User Authorization**: Registration and login using Passport.js.
 - **Real-time Notifications**: Send notifications via MQTT and emails via Nodemailer for users with the user role.
 - **Secure Communication**: HTTPS server with SSL/TLS certificates.
 
-## Technologies
+## 👨‍💻 Technologies
 
 - **Backend**: Node.js, Express.js, MongoDB, Mongoose
 - **Frontend**: EJS, SCSS, JavaScript
@@ -50,7 +50,7 @@ music_label_management_app/
 └── README.md                 # Project documentation
 ```
 
-## Screenshots
+## 📷 Screenshots
 
 
 ### Registration Page
