@@ -89,6 +89,6 @@ View of all available albums with the ability to browse details.
 ![Studio Sessions List](public/images/sessionsPage.png)
 View of scheduled studio sessions, available for users and artists.
 
-## Authors
+## 👨‍💻 Authors
 
 - **MaksJanu** - [GitHub](https://github.com/MaksJanu)
